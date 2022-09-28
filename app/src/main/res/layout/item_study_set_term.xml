@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/poop">
+    android:layout_margin="10dp" >
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/item_study_set"
@@ -61,10 +61,10 @@
         android:layout_height="40dp"
         android:padding="0dp"
 
-        android:layout_marginEnd="0dp"
+        android:layout_marginRight="1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/study_set_term"
-        app:layout_constraintBottom_toBottomOf="@id/study_set_term" />
+        app:layout_constraintTop_toTopOf="@id/study_set_definition"
+        app:layout_constraintBottom_toBottomOf="@id/study_set_definition" />
 
     <ToggleButton
         android:id = "@+id/term_star"
@@ -81,10 +81,10 @@
         android:layout_height="40dp"
         android:padding="0dp"
 
-        android:layout_marginEnd="0dp"
+        android:layout_marginRight="1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/study_set_definition"
-        app:layout_constraintBottom_toBottomOf="@id/study_set_definition" />
+        app:layout_constraintTop_toTopOf="@id/study_set_term"
+        app:layout_constraintBottom_toBottomOf="@id/study_set_term" />
 
     <Space
         android:id = "@+id/space"

@@ -10,9 +10,10 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="grey">#D0D3D4</color>
+    <color name="grey_light">#F0F3F4</color>
     <color name="grey_dark">#7B7D7D</color>
 
-    <color name="purple_light">#EBDEF0</color>
     <color name="purple">#C39BD3</color>
+    <color name="purple_light">#EBDEF0</color>
     <color name="purple_dark">#9B59B6</color>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity" >
 
     <TextView
         android:id = "@+id/app_name"
@@ -24,9 +24,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/study_set_list"
         tools:listitem="@layout/item_study_set"
+        android:background="@color/grey_light"
 
         android:layout_width="match_parent"
-        android:layout_height="520dp"
+        android:layout_height="500dp"
 
         android:layout_marginTop="20dp"
         android:layout_marginLeft="15dp"
