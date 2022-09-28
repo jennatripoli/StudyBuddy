@@ -26,7 +26,7 @@
         tools:listitem="@layout/item_study_set"
 
         android:layout_width="match_parent"
-        android:layout_height="510dp"
+        android:layout_height="520dp"
 
         android:layout_marginTop="20dp"
         android:layout_marginLeft="15dp"
@@ -36,7 +36,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id = "@+id/new_study_set"
+        android:id = "@+id/add_study_set"
         android:background="@drawable/circle_button"
         android:text = "@string/add"
 
@@ -63,72 +63,8 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="@id/new_study_set"
-        app:layout_constraintStart_toStartOf="@id/new_study_set"
-        app:layout_constraintTop_toBottomOf="@id/new_study_set" />
-
-    <Button
-        android:id = "@+id/show_flashcard"
-        android:background="@drawable/circle_button"
-        android:text = "@string/play"
-
-        android:textSize="25sp"
-        android:gravity="center"
-        android:includeFontPadding="false"
-
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:padding="0dp"
-
-        android:layout_marginBottom="50dp"
-        app:layout_constraintEnd_toStartOf="@id/new_study_set_caption"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <TextView
-        android:id = "@+id/show_flashcard_caption"
-        android:text="@string/play_flashcard"
-
-        android:textSize="14sp"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="@id/show_flashcard"
-        app:layout_constraintStart_toStartOf="@id/show_flashcard"
-        app:layout_constraintTop_toBottomOf="@id/show_flashcard" />
-
-    <Button
-        android:id = "@+id/test_start"
-        android:background="@drawable/circle_button"
-        android:text = "@string/test"
-
-        android:textSize="25sp"
-        android:gravity="center"
-        android:includeFontPadding="false"
-
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:padding="0dp"
-
-        android:layout_marginBottom="50dp"
-        app:layout_constraintStart_toEndOf="@id/new_study_set_caption"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <TextView
-        android:id = "@+id/test_start_caption"
-        android:text="@string/test_start"
-
-        android:textSize="14sp"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="@id/test_start"
-        app:layout_constraintStart_toStartOf="@id/test_start"
-        app:layout_constraintTop_toBottomOf="@id/test_start" />
+        app:layout_constraintEnd_toEndOf="@id/add_study_set"
+        app:layout_constraintStart_toStartOf="@id/add_study_set"
+        app:layout_constraintTop_toBottomOf="@id/add_study_set" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
