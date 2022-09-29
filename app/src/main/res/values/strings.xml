@@ -3,6 +3,7 @@
     <string name="add_study_set">add a new study set</string>
     <string name="play_flashcard">study flashcards</string>
     <string name="test_start">take practice test</string>
+    <string name="pomodoro">study plan</string>
 
     <string name="add">+</string>
     <string name="play">▶</string>
@@ -10,6 +11,7 @@
     <string name="delete">🗑</string>
     <string name="star">⭐</string>
     <string name="study">📝️</string>
+    <string name="clock">⏰</string>
 
     <string name="study_set_name">Study Set Name</string>
     <string name="study_set_term">Term</string>

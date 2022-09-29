@@ -68,4 +68,37 @@
         app:layout_constraintStart_toStartOf="@id/add_study_set"
         app:layout_constraintTop_toBottomOf="@id/add_study_set" />
 
+    <Button
+        android:id = "@+id/pomodoro"
+        android:background="@drawable/circle_button"
+        android:text = "@string/clock"
+
+        android:textSize="18sp"
+        android:gravity="center"
+        android:includeFontPadding="false"
+
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="0dp"
+
+        android:layout_marginBottom="50dp"
+
+        app:layout_constraintStart_toEndOf="@id/new_study_set_caption"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id = "@+id/pomodoro_caption"
+        android:text="@string/pomodoro"
+
+        android:textSize="14sp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="@id/pomodoro"
+        app:layout_constraintStart_toStartOf="@id/pomodoro"
+        app:layout_constraintTop_toBottomOf="@id/pomodoro" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

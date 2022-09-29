@@ -3,10 +3,7 @@ package com.example.studybuddy
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
 
 private const val REQUEST_CODE_ADD_SET = 1
 
