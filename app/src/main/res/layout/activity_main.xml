@@ -69,7 +69,7 @@
         app:layout_constraintTop_toBottomOf="@id/add_study_set" />
 
     <Button
-        android:id = "@+id/pomodoro"
+        android:id = "@+id/study_plan"
         android:background="@drawable/circle_button"
         android:text = "@string/clock"
 
@@ -88,8 +88,8 @@
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
-        android:id = "@+id/pomodoro_caption"
-        android:text="@string/pomodoro"
+        android:id = "@+id/study_plan_caption"
+        android:text="@string/study_plan"
 
         android:textSize="14sp"
 
@@ -97,8 +97,8 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="@id/pomodoro"
-        app:layout_constraintStart_toStartOf="@id/pomodoro"
-        app:layout_constraintTop_toBottomOf="@id/pomodoro" />
+        app:layout_constraintEnd_toEndOf="@id/study_plan"
+        app:layout_constraintStart_toStartOf="@id/study_plan"
+        app:layout_constraintTop_toBottomOf="@id/study_plan" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
