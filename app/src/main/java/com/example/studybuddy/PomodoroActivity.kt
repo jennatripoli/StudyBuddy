@@ -1,19 +1,43 @@
 package com.example.studybuddy
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import java.util.concurrent.TimeUnit
-
 
 class PomodoroActivity : AppCompatActivity() {
 
     private lateinit var stringCurrentPeriod : TextView
     private lateinit var stringTimeRemaining : TextView
-    private lateinit var buttonRestartTimer : Button
+    private lateinit var buttonStartTimer : Button
+    private lateinit var buttonCancelTimer : Button
+
+    private var timerStudy = object : CountDownTimer(25 * 60000, 1000) {
+        override fun onTick(millisUntilFinish: Long) {
+            stringTimeRemaining.setText(millisToTime(millisUntilFinish))
+        }
+
+        override fun onFinish() {
+            val toast = Toast.makeText(applicationContext, "STUDY PERIOD COMPLETE", Toast.LENGTH_LONG)
+            toast.show()
+            startBreak()
+        }
+    }
+
+    private var timerBreak = object : CountDownTimer(5 * 60000, 1000) {
+        override fun onTick(millisUntilFinish: Long) {
+            stringTimeRemaining.setText(millisToTime(millisUntilFinish))
+        }
+
+        override fun onFinish() {
+            val toast = Toast.makeText(applicationContext, "BREAK PERIOD COMPLETE", Toast.LENGTH_LONG)
+            toast.show()
+            startStudying()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,41 +45,31 @@ class PomodoroActivity : AppCompatActivity() {
 
         stringCurrentPeriod = findViewById(R.id.current_period)
         stringTimeRemaining = findViewById(R.id.time)
-        buttonRestartTimer = findViewById(R.id.restart_timer)
+        buttonStartTimer = findViewById(R.id.start_timer)
+        buttonCancelTimer = findViewById(R.id.cancel_timer)
 
-        buttonRestartTimer.setOnClickListener {
+        buttonStartTimer.setOnClickListener {
             startStudying()
+        }
+
+        buttonCancelTimer.setOnClickListener {
+            timerStudy.cancel()
+            timerBreak.cancel()
+            stringCurrentPeriod.setText("Keep on studying!")
+            stringTimeRemaining.setText(millisToTime(25 * 60000))
         }
     }
 
     fun startStudying() {
         stringCurrentPeriod.setText("Keep on studying!")
-
-        val timer = object : CountDownTimer(25 * 60000, 1000) {
-            override fun onTick(millisUntilFinish: Long) {
-                stringTimeRemaining.setText(millisToTime(millisUntilFinish))
-            }
-
-            override fun onFinish() {
-                // send notification
-                startBreak()
-            }
-        }.start()
+        timerBreak.cancel()
+        timerStudy.start()
     }
 
     fun startBreak() {
         stringCurrentPeriod.setText("Enjoy your break!")
-
-        val timer = object : CountDownTimer(5 * 60000, 1000) {
-            override fun onTick(millisUntilFinish: Long) {
-                stringTimeRemaining.setText(millisToTime(millisUntilFinish))
-            }
-
-            override fun onFinish() {
-                // send notification
-                startStudying()
-            }
-        }.start()
+        timerStudy.cancel()
+        timerBreak.start()
     }
 
     fun millisToTime(millis: Long):String {
