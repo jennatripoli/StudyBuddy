@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.studybuddy.database.DataRepo
 
 private const val REQUEST_CODE_ADD_SET = 1
 private const val REQUEST_CODE_POMODORO = 2
@@ -15,10 +16,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var studySetList : RecyclerView
     private lateinit var buttonAddStudySet : Button
     private lateinit var buttonPomodoro : Button
+    private lateinit var database : DataRepo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        database = DataRepo(applicationContext)
 
         studySetList = findViewById(R.id.study_set_list)
         buttonAddStudySet = findViewById(R.id.add_study_set)
