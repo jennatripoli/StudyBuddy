@@ -6,25 +6,25 @@ import androidx.room.*
 interface DAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertStudySet(studySet: StudySetEntity)
+    fun insertStudySet(studySet: StudySetEntity)
 
     @Delete
-    suspend fun deleteStudySet(studySet: StudySetEntity)
+    fun deleteStudySet(studySet: StudySetEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertFlashcard(flashcard: FlashcardEntity)
+    fun insertFlashcard(flashcard: FlashcardEntity)
 
     @Delete
-    suspend fun deleteFlashcard(flashcard: FlashcardEntity)
+    fun deleteFlashcard(flashcard: FlashcardEntity)
 
     @Query("SELECT * FROM flashcards")
-    suspend fun getAllFlashcards() : List<FlashcardEntity>
+    fun getAllFlashcards() : List<FlashcardEntity>
 
     @Query("SELECT * FROM study_sets")
-    suspend fun getAllStudySets() : List<StudySetEntity>
+    fun getAllStudySets() : List<StudySetEntity>
 
     @Transaction
     @Query("SELECT * FROM study_sets WHERE studySetName = :studySetName")
-    suspend fun getStudySetWithFlashcards(studySetName : String): List<StudySetWithFlashcards>
+    fun getStudySetWithFlashcards(studySetName : String): List<StudySetWithFlashcards>
 
 }
