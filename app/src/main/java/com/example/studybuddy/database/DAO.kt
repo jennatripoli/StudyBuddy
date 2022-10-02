@@ -8,8 +8,14 @@ interface DAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertStudySet(studySet: StudySetEntity)
 
+    @Delete
+    suspend fun deleteStudySet(studySet: StudySetEntity)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFlashcard(flashcard: FlashcardEntity)
+
+    @Delete
+    suspend fun deleteFlashcard(flashcard: FlashcardEntity)
 
     @Query("SELECT * FROM flashcards")
     suspend fun getAllFlashcards() : List<FlashcardEntity>
