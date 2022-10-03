@@ -16,62 +16,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/study_set_term"
+        android:text="@string/study_set_term"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-
-        android:hint="@string/study_set_term"
-        android:inputType="text"
-        android:autofillHints=""
 
         android:textSize="18sp"
+        android:background="@color/grey_light"
+
+        android:layout_marginEnd="50dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/term_delete"
+        app:layout_constraintRight_toLeftOf="@id/term_edit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/study_set_definition"
-        android:hint="@string/study_set_definition"
-
-        android:textSize="18sp"
-        android:inputType="text"
-        android:autofillHints=""
+        android:text="@string/study_set_definition"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
+        android:textSize="18sp"
+        android:background="@color/grey_light"
+
         android:layout_marginEnd="50dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/study_set_term"
-        app:layout_constraintRight_toLeftOf="@id/term_delete" />
+        app:layout_constraintRight_toLeftOf="@id/term_edit" />
 
     <Button
-        android:id = "@+id/term_delete"
+        android:id = "@+id/term_edit"
         android:background="@drawable/circle_button"
-        android:text = "@string/delete"
-
-        android:textSize="18sp"
-        android:gravity="center"
-        android:includeFontPadding="false"
-
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:padding="0dp"
-
-        android:layout_marginRight="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/study_set_definition"
-        app:layout_constraintBottom_toBottomOf="@id/study_set_definition" />
-
-    <ToggleButton
-        android:id = "@+id/term_star"
-        android:background="@drawable/circle_button"
-        android:textOn = "@string/star"
-        android:textOff = "@string/star"
-        android:backgroundTint="@color/grey"
+        android:text = "@string/edit"
 
         android:textSize="18sp"
         android:gravity="center"
@@ -84,7 +64,7 @@
         android:layout_marginRight="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/study_set_term"
-        app:layout_constraintBottom_toBottomOf="@id/study_set_term" />
+        app:layout_constraintBottom_toBottomOf="@id/study_set_definition" />
 
     <Space
         android:id = "@+id/space"
