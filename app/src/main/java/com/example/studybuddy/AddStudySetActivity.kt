@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 private const val REQUEST_CODE_EDIT = 3
 
@@ -13,6 +15,8 @@ class AddStudySetActivity : AppCompatActivity() {
     private lateinit var addTerm : Button
     private lateinit var showFlashcardsBtn : Button
     private lateinit var studySetNameTxt : EditText
+
+    private lateinit var flashcardRecycler : RecyclerView
 
     private lateinit var studySetName : String
 
@@ -23,6 +27,9 @@ class AddStudySetActivity : AppCompatActivity() {
         addTerm = findViewById(R.id.add_term)
         showFlashcardsBtn = findViewById(R.id.show_flashcard)
         studySetNameTxt = findViewById(R.id.study_set_name)
+
+        flashcardRecycler = findViewById(R.id.study_set_term_list)
+        flashcardRecycler.layoutManager = LinearLayoutManager(this)
 
         studySetName = intent.getStringExtra(EXTRA_SET_NAME).toString() // get the intent sent over
         studySetNameTxt.setText(studySetName)
