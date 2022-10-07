@@ -5,26 +5,32 @@ import androidx.room.*
 @Dao
 interface DAO {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertStudySet(studySet: StudySetEntity)
+    @Insert
+    suspend fun insertStudySet(studySet: StudySetEntity)
 
     @Delete
-    fun deleteStudySet(studySet: StudySetEntity)
+    suspend fun deleteStudySet(studySet: StudySetEntity)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertFlashcard(flashcard: FlashcardEntity)
+    @Update
+    suspend fun updateStudySet(studySet: StudySetEntity)
+
+    @Insert
+    suspend fun insertFlashcard(flashcard: FlashcardEntity)
 
     @Delete
-    fun deleteFlashcard(flashcard: FlashcardEntity)
+    suspend fun deleteFlashcard(flashcard: FlashcardEntity)
 
     @Query("SELECT * FROM flashcards")
-    fun getAllFlashcards() : List<FlashcardEntity>
+    suspend fun getAllFlashcards() : List<FlashcardEntity>
+
+    @Query("SELECT * FROM flashcards WHERE studySetName = :setName")
+    suspend fun getFlashcardsForStudySet(setName : String) : List<FlashcardEntity>
 
     @Query("SELECT * FROM study_sets")
-    fun getAllStudySets() : List<StudySetEntity>
+    suspend fun getAllStudySets() : List<StudySetEntity>
 
-    @Transaction
-    @Query("SELECT * FROM study_sets WHERE studySetName = :studySetName")
-    fun getStudySetWithFlashcards(studySetName : String): List<StudySetWithFlashcards>
+    @Query("SELECT * FROM study_sets ORDER BY id DESC LIMIT 1")
+    suspend fun getMostRecentStudySet() : StudySetEntity?
+
 
 }

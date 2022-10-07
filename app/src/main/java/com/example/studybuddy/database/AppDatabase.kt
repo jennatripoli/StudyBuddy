@@ -5,12 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [StudySetEntity::class, FlashcardEntity::class], version = 1)
+@Database(entities = [StudySetEntity::class, FlashcardEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract val dao : DAO
 
     companion object {
+
         private var INSTANCE: AppDatabase? = null
 
         fun getInstance(context : Context): AppDatabase? {
@@ -18,7 +19,7 @@ abstract class AppDatabase : RoomDatabase() {
                 synchronized(AppDatabase::class) {
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
                         AppDatabase::class.java,
-                        "database-name").allowMainThreadQueries().build()
+                        "study_buddy_database.sqlite").build()
                 }
             }
             return INSTANCE

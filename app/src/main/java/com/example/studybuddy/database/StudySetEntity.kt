@@ -4,7 +4,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "study_sets")
-data class StudySetEntity (
-        @PrimaryKey(autoGenerate = false)
-        val studySetName : String
+class StudySetEntity(
+        @PrimaryKey(autoGenerate = true)
+        var id : Long = 0L,
+        var studySetName : String = ""
         )
