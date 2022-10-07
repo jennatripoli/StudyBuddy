@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studybuddy.AddStudySetActivity
 import com.example.studybuddy.EXTRA_SET_NAME
@@ -15,9 +14,7 @@ import com.example.studybuddy.R
 import com.example.studybuddy.REQUEST_CODE_ADD_SET
 import com.example.studybuddy.database.StudySetEntity
 
-class StudySetAdapter(val activity: Activity, private val studySets : List<StudySetEntity>)
-    : RecyclerView.Adapter<StudySetAdapter.ViewHolder>()
-{
+class StudySetAdapter(val activity: Activity, private val studySets : List<StudySetEntity>) : RecyclerView.Adapter<StudySetAdapter.ViewHolder>() {
 
     /**
      * Handles how each item view behaves
@@ -32,12 +29,10 @@ class StudySetAdapter(val activity: Activity, private val studySets : List<Study
          * Bind the study set name to the item holder
          */
         fun bind(studySetName : String) {
-            // bind the text view to the study set name
-            studySetNameTxt.text = studySetName
 
-            // open up the edit study set intent
-            studySetEditButton.setOnClickListener() {
-                // start intent and send study set name via extra so we know what flashcards to display
+            studySetNameTxt.text = studySetName // set the item view's study set name
+
+            studySetEditButton.setOnClickListener() { // edit button launches add study set activity
                 val intent = Intent(activity, AddStudySetActivity::class.java).apply {
                     putExtra(EXTRA_SET_NAME, studySetName)
                 }
