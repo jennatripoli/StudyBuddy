@@ -8,9 +8,6 @@ interface DAO {
     @Insert
     suspend fun insertStudySet(studySet: StudySetEntity)
 
-//    @Delete
-//    suspend fun deleteStudySet(studySet: StudySetEntity)
-
     @Query("DELETE FROM STUDY_SETS WHERE studySetName = :name")
     suspend fun deleteStudySet(name : String)
 
@@ -23,11 +20,11 @@ interface DAO {
     @Delete
     suspend fun deleteFlashcard(flashcard: FlashcardEntity)
 
-    @Query("SELECT * FROM flashcards")
-    suspend fun getAllFlashcards() : List<FlashcardEntity>
-
     @Query("SELECT * FROM flashcards WHERE studySetName = :setName")
     suspend fun getFlashcardsForStudySet(setName : String) : List<FlashcardEntity>
+
+    @Query("SELECT * FROM flashcards")
+    suspend fun getAllFlashcards() : List<FlashcardEntity>
 
     @Query("SELECT * FROM study_sets")
     suspend fun getAllStudySets() : List<StudySetEntity>
@@ -35,5 +32,7 @@ interface DAO {
     @Query("SELECT * FROM study_sets ORDER BY id DESC LIMIT 1")
     suspend fun getMostRecentStudySet() : StudySetEntity?
 
+    @Query("SELECT * FROM flashcards ORDER BY id DESC LIMIT 1")
+    suspend fun getMostRecentFlashcard() : FlashcardEntity?
 
 }
