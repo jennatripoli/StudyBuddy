@@ -1,12 +1,10 @@
 package com.example.studybuddy
 
-import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.InputType
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
@@ -14,35 +12,35 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.studybuddy.database.FlashcardEntity
 import com.example.studybuddy.recyclerview.FlashcardAdapter
 import com.example.studybuddy.recyclerview.FlashcardDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+const val REQUEST_CODE_FLASHCARD = 4
+
 class AddStudySetActivity : AppCompatActivity() {
 
-    private lateinit var addTerm : Button
-    private lateinit var showFlashcardsBtn : Button
-    private lateinit var studySetNameTxt : TextView
+    private lateinit var buttonAddTerm : Button
+    private lateinit var buttonFlashcards : Button
+    private lateinit var textStudySetName : TextView
+    private lateinit var stringStudySetName : String
 
     private lateinit var flashcardRecycler : RecyclerView
     private lateinit var flashcardAdapter: FlashcardAdapter
     private lateinit var flashcardDataSource: FlashcardDataSource
 
-    private lateinit var studySetName : String
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_study_set)
 
-        addTerm = findViewById(R.id.add_term)
-        showFlashcardsBtn = findViewById(R.id.show_flashcard)
-        studySetNameTxt = findViewById(R.id.study_set_name)
+        buttonAddTerm = findViewById(R.id.add_term)
+        buttonFlashcards = findViewById(R.id.show_flashcard)
+        textStudySetName = findViewById(R.id.study_set_name)
 
-        studySetName = intent.getStringExtra(EXTRA_SET_NAME).toString() // get the intent sent over
-        studySetNameTxt.text = studySetName
+        stringStudySetName = intent.getStringExtra(EXTRA_SET_NAME).toString() // get the intent sent over
+        textStudySetName.text = stringStudySetName
 
         flashcardRecycler = findViewById(R.id.study_set_term_list)
         flashcardRecycler.layoutManager = LinearLayoutManager(this)
@@ -57,8 +55,7 @@ class AddStudySetActivity : AppCompatActivity() {
             }
         }
 
-        addTerm.setOnClickListener() {
-
+        buttonAddTerm.setOnClickListener() {
             val dialog = Dialog(this)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.setContentView(R.layout.activity_edit_study_set_term)
@@ -79,13 +76,18 @@ class AddStudySetActivity : AppCompatActivity() {
                 if (term != "" && def != "") {
                     Log.d("MAIN", "They were not null")
                     GlobalScope.launch(Dispatchers.IO) {
-                        flashcardDataSource.insertFlashcard(term, def, studySetName)
+                        flashcardDataSource.insertFlashcard(term, def, stringStudySetName)
                         dialog.cancel()
                     }
                 }
             }
             dialog.show()
             dialog.window?.attributes = l
+        }
+
+        buttonFlashcards.setOnClickListener() {
+            val intent = Intent(this@AddStudySetActivity, FlashcardActivity::class.java)
+            startActivityForResult(intent, REQUEST_CODE_FLASHCARD)
         }
     }
 }

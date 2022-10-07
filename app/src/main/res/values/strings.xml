@@ -8,6 +8,7 @@
 
     <string name="add">+</string>
     <string name="play">▶</string>
+    <string name="back">◀</string>
     <string name="pause">❙❙</string>
     <string name="test">✎</string>
     <string name="delete">🗑</string>
@@ -34,4 +35,8 @@
     <string name="edit_term">Edit Term</string>
     <string name="delete_term">delete term</string>
     <string name="save_term">save term</string>
+
+    <string name="card_flip">Flip</string>
+    <string name="card_front">Card Front</string>
+    <string name="card_back">Card Back</string>
 </resources>
