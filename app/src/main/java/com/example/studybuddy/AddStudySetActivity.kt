@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -14,7 +15,7 @@ class AddStudySetActivity : AppCompatActivity() {
 
     private lateinit var addTerm : Button
     private lateinit var showFlashcardsBtn : Button
-    private lateinit var studySetNameTxt : EditText
+    private lateinit var studySetNameTxt : TextView
 
     private lateinit var flashcardRecycler : RecyclerView
 
@@ -32,7 +33,7 @@ class AddStudySetActivity : AppCompatActivity() {
         flashcardRecycler.layoutManager = LinearLayoutManager(this)
 
         studySetName = intent.getStringExtra(EXTRA_SET_NAME).toString() // get the intent sent over
-        studySetNameTxt.setText(studySetName)
+        studySetNameTxt.text = studySetName
 
     }
 }
