@@ -48,7 +48,6 @@ class AddStudySetActivity : AppCompatActivity() {
         flashcardRecycler.layoutManager = LinearLayoutManager(this)
 
         flashcardDataSource = FlashcardDataSource.getDataSource()
-        flashcardDataSource.setFlashcardList(studySetName)
         val liveData = flashcardDataSource.getFlashcardList()
 
         liveData.observe(this) {

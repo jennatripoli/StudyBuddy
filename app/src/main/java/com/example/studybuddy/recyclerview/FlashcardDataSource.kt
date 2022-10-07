@@ -47,7 +47,7 @@ class FlashcardDataSource private constructor(coroutineScope: CoroutineScope = G
         // get the most recently added study flashcard from the database
         var newestCard = db?.getMostRecentFlashcard()
 
-        if(newestCard?.studySetName == "") {
+        if(newestCard?.term == "") {
             newestCard = null
         }
 
@@ -74,14 +74,6 @@ class FlashcardDataSource private constructor(coroutineScope: CoroutineScope = G
         return flashcardLiveData
     }
 
-    /**
-     * Set the live data to only be flashcards of a given study set
-     */
-    fun setFlashcardList(studySetName : String) {
-        GlobalScope.launch {
-            flashcardLiveData = MutableLiveData(db?.getFlashcardsForStudySet(studySetName))
-        }
-    }
 
     // create static companion object
     companion object {

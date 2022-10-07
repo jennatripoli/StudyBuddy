@@ -37,11 +37,11 @@ class FlashcardAdapter (val activity: Activity, private val flashcards : List<Fl
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlashcardAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_study_set_term, parent, false))
     }
 
-    override fun onBindViewHolder(holder: FlashcardAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(flashcards[position])
     }
 
