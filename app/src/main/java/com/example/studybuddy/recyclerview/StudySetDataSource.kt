@@ -85,6 +85,29 @@ class StudySetDataSource private constructor(coroutineScope: CoroutineScope = Gl
     }
 
     /**
+     *  Deletes a study set from the database
+     */
+    suspend fun deleteStudySet(studySetName : String) {
+        // remove from database
+        db?.deleteStudySet(studySetName)
+
+        // remove from live data
+        val currentList = studySetLiveData.value
+        if(currentList != null) {
+            val updatedList = currentList.toMutableList()
+
+            // search list for study set of the given name
+            for(studySet in updatedList) {
+                if(studySet.studySetName == studySetName) {
+                    updatedList.remove(studySet)
+                    break
+                }
+            }
+            studySetLiveData.postValue(updatedList)
+        }
+    }
+
+    /**
      * Returns all of the live data
      */
     fun getStudySetList() : LiveData<List<StudySetEntity>> {

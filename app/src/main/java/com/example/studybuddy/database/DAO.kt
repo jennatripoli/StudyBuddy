@@ -8,8 +8,11 @@ interface DAO {
     @Insert
     suspend fun insertStudySet(studySet: StudySetEntity)
 
-    @Delete
-    suspend fun deleteStudySet(studySet: StudySetEntity)
+//    @Delete
+//    suspend fun deleteStudySet(studySet: StudySetEntity)
+
+    @Query("DELETE FROM STUDY_SETS WHERE studySetName = :name")
+    suspend fun deleteStudySet(name : String)
 
     @Update
     suspend fun updateStudySet(studySet: StudySetEntity)

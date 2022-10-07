@@ -66,10 +66,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Creates a new study set by getting user input for name, adding it to the database,
-     * then launches the new intent
-     */
     private fun createNewStudySet() {
         // create alert dialog
         val builder : AlertDialog.Builder = AlertDialog.Builder(this)
@@ -97,6 +93,14 @@ class MainActivity : AppCompatActivity() {
             dialog.cancel()
         }
         builder.show()
+    }
+
+    fun deleteStudySet(name : String) {
+        if(name != "") {
+            GlobalScope.launch(Dispatchers.IO) {
+                setDataSource.deleteStudySet(name) // add to RecyclerView and database
+            }
+        }
     }
 }
 

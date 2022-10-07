@@ -8,10 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.studybuddy.AddStudySetActivity
-import com.example.studybuddy.EXTRA_SET_NAME
-import com.example.studybuddy.R
-import com.example.studybuddy.REQUEST_CODE_ADD_SET
+import com.example.studybuddy.*
 import com.example.studybuddy.database.StudySetEntity
 
 class StudySetAdapter(val activity: Activity, private val studySets : List<StudySetEntity>) : RecyclerView.Adapter<StudySetAdapter.ViewHolder>() {
@@ -38,6 +35,11 @@ class StudySetAdapter(val activity: Activity, private val studySets : List<Study
                 }
                 activity.startActivityForResult(intent, REQUEST_CODE_ADD_SET)
             }
+
+            studySetDeleteButton.setOnClickListener() { // deletes a study set TODO: Make sure all corresponding flashcards are deleted
+                (activity as MainActivity).deleteStudySet(studySetName)
+            }
+
         }
         init {
             studySetNameTxt = itemView.findViewById(R.id.study_set_name)
