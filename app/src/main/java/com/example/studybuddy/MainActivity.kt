@@ -20,10 +20,10 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 private const val TAG = "MainActivity"
-private const val EXTRA_SET_NAME = "com.example.studybuddy.SET_NAME"
+const val EXTRA_SET_NAME = "com.example.studybuddy.SET_NAME"
 
-private const val REQUEST_CODE_ADD_SET = 1
-private const val REQUEST_CODE_POMODORO = 2
+const val REQUEST_CODE_ADD_SET = 1
+const val REQUEST_CODE_POMODORO = 2
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,6 +35,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var studySetRecycler : RecyclerView
     private lateinit var studySetAdapter : StudySetAdapter
     private lateinit var setDataSource: StudySetDataSource
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
+        super.onActivityResult(requestCode, resultCode, intent)
+        Log.d(TAG, "Activity Finished")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,46 +67,7 @@ class MainActivity : AppCompatActivity() {
 
         // on create study set
         buttonAddStudySet.setOnClickListener {
-
-            // create alert dialog
-            val builder : AlertDialog.Builder = AlertDialog.Builder(this)
-            builder.setTitle("Enter Study Set Name")
-
-            // create text input
-            val newSetNameInput = EditText(this)
-            newSetNameInput.inputType = InputType.TYPE_CLASS_TEXT
-
-            // apply text input to builder
-            builder.setView(newSetNameInput)
-
-            // create button
-            builder.setPositiveButton("Create") { _, _ ->
-
-                // get text input
-                val newSetName = newSetNameInput.text.toString()
-
-                // if we have a valid name
-                if(newSetName != "") {
-
-                    GlobalScope.launch(Dispatchers.IO) {
-
-                        // insert to db and recycler view
-                        setDataSource.insertStudySet(newSetName)
-
-                        // start intent and send study set name via extra so we know what flashcards to display
-                        val intent = Intent(this@MainActivity, AddStudySetActivity::class.java).apply {
-                            putExtra(EXTRA_SET_NAME, newSetName)
-                        }
-                        resultLauncher.launch(intent)
-                    }
-                }
-            }
-            // cancel button
-            builder.setNegativeButton("Cancel") { dialog, _ ->
-                dialog.cancel()
-            }
-            // show alert dialog
-            builder.show()
+            createNewStudySet()
         }
 
         // on pomodoro start
@@ -111,14 +77,42 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // activity result callback non-deprecated
-    private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-    { result ->
-        if(result.resultCode == Activity.RESULT_OK) {
-            Log.d(TAG, "Finished Activity")
+    /**
+     * Creates a new study set by getting user input for name, adding it to the database,
+     * then launches the new intent
+     */
+    private fun createNewStudySet() {
+        // create alert dialog
+        val builder : AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Enter Study Set Name")
+
+        // create text input
+        val newSetNameInput = EditText(this)
+        newSetNameInput.inputType = InputType.TYPE_CLASS_TEXT
+
+        // apply text input to builder
+        builder.setView(newSetNameInput)
+
+        // create button
+        builder.setPositiveButton("Create") { _, _ ->
+
+            // get text input
+            val newSetName = newSetNameInput.text.toString()
+
+            // if we have a valid name add it to db and view
+            if(newSetName != "") {
+                GlobalScope.launch(Dispatchers.IO) {
+                    setDataSource.insertStudySet(newSetName)
+                }
+            }
         }
+        // cancel button
+        builder.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.cancel()
+        }
+        // show alert dialog
+        builder.show()
     }
-
-
 }
+
 
