@@ -4,29 +4,28 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 
 private const val REQUEST_CODE_EDIT = 3
 
 class AddStudySetActivity : AppCompatActivity() {
 
     private lateinit var addTerm : Button
-    //private lateinit var editTerm : Button
+    private lateinit var showFlashcardsBtn : Button
+    private lateinit var studySetNameTxt : EditText
+
+    private lateinit var studySetName : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_study_set)
 
         addTerm = findViewById(R.id.add_term)
-        //editTerm = findViewById(R.id.term_edit)
+        showFlashcardsBtn = findViewById(R.id.show_flashcard)
+        studySetNameTxt = findViewById(R.id.study_set_name)
 
-        addTerm.setOnClickListener {
-            val intent = Intent(this@AddStudySetActivity, EditStudySetTermActivity::class.java)
-            startActivityForResult(intent, REQUEST_CODE_EDIT)
-        }
+        studySetName = intent.getStringExtra(EXTRA_SET_NAME).toString() // get the intent sent over
+        studySetNameTxt.setText(studySetName)
 
-        /*editTerm.setOnClickListener {
-            val intent = Intent(this@AddStudySetActivity, EditStudySetTermActivity::class.java)
-            startActivityForResult(intent, REQUEST_CODE_EDIT)
-        }*/
     }
 }
