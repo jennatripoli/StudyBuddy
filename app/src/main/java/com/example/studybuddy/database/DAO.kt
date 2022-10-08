@@ -14,11 +14,16 @@ interface DAO {
     @Update
     suspend fun updateStudySet(studySet: StudySetEntity)
 
+
     @Insert
     suspend fun insertFlashcard(flashcard: FlashcardEntity)
 
     @Delete
     suspend fun deleteFlashcard(flashcard: FlashcardEntity)
+
+    @Update
+    suspend fun updateFlashcard(flashcard: FlashcardEntity)
+
 
     @Query("SELECT * FROM flashcards WHERE studySetName = :setName")
     suspend fun getFlashcardsForStudySet(setName : String) : List<FlashcardEntity>

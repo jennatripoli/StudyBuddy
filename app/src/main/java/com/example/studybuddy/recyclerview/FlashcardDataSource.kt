@@ -95,6 +95,43 @@ class FlashcardDataSource private constructor(coroutineScope: CoroutineScope = G
     }
 
     /**
+     * Updates an edited flashcard
+     */
+    suspend fun updateFlashcard(oldId : Long, newTerm : String, newDef : String, studySetName : String) {
+
+        // reject bad edits
+        if(newTerm == "" || newDef == "" || studySetName == "") {
+            return
+        }
+
+        // create new flashcard with the same ID and study set name
+        val updatedFlashcard = FlashcardEntity()
+        updatedFlashcard.id = oldId
+        updatedFlashcard.term = newTerm
+        updatedFlashcard.definition = newDef
+        updatedFlashcard.studySetName = studySetName
+
+        // update the new flashcard into the database
+        db?.updateFlashcard(updatedFlashcard)
+
+        // update the live data
+        val currentList = flashcardLiveData.value
+
+        if(currentList != null) {
+            val updatedList = currentList.toMutableList()
+
+            for(flashcard in updatedList) {
+                if(flashcard.id == updatedFlashcard.id) {
+                    flashcard.term = newTerm
+                    flashcard.definition = newDef
+                    break
+                }
+            }
+            flashcardLiveData.postValue(updatedList)
+        }
+    }
+
+    /**
      * Returns all of the live data
      */
     fun getFlashcardList() : LiveData<List<FlashcardEntity>> {

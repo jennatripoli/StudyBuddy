@@ -104,6 +104,11 @@ class AddStudySetActivity : AppCompatActivity() {
             startActivityForResult(intent, REQUEST_CODE_FLASHCARD)
         }
     }
+    fun updateFlashcard(flashcard: FlashcardEntity) {
+        GlobalScope.launch {
+            flashcardDataSource.updateFlashcard(flashcard.id, flashcard.term, flashcard.definition, flashcard.studySetName)
+        }
+    }
 
     fun deleteFlashcard(flashcard : FlashcardEntity) {
         GlobalScope.launch {
