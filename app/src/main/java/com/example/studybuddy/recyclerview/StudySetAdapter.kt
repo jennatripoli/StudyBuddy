@@ -36,7 +36,7 @@ class StudySetAdapter(val activity: Activity, private val studySets : List<Study
                 activity.startActivityForResult(intent, REQUEST_CODE_ADD_SET)
             }
 
-            studySetDeleteButton.setOnClickListener() { // deletes a study set TODO: Make sure all corresponding flashcards are deleted
+            studySetDeleteButton.setOnClickListener() { // deletes a study set
                 (activity as MainActivity).deleteStudySet(studySetName)
             }
 

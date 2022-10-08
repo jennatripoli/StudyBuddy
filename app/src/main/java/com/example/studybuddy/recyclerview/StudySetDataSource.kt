@@ -91,6 +91,9 @@ class StudySetDataSource private constructor(coroutineScope: CoroutineScope = Gl
         // remove from database
         db?.deleteStudySet(studySetName)
 
+        // remove all flashcards from database associated with that study set
+        db?.deleteAllFlashcardsFromSet(studySetName)
+
         // remove from live data
         val currentList = studySetLiveData.value
         if(currentList != null) {
