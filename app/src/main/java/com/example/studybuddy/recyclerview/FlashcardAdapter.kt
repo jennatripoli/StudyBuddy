@@ -42,6 +42,9 @@ class FlashcardAdapter (val activity: Activity, private val flashcards : List<Fl
                 val addBtn = dialog.findViewById(R.id.save_term) as Button
                 val deleteBtn = dialog.findViewById(R.id.delete_term) as Button
 
+                termEditText.setText(flashcard.term) // sets the edit texts for edit to the prev values
+                defEditText.setText(flashcard.definition)
+
                 addBtn.setOnClickListener() { // update the flashcard
 
                     val newTerm = termEditText.text.toString()
