@@ -64,41 +64,52 @@ class FlashcardActivity : AppCompatActivity() {
 
         buttonFlip.setOnClickListener { // flips the flashcard
             if (showingFront) {
-                animationFront.setTarget(cardFront)
-                animationBack.setTarget(cardBack)
-                animationFront.start()
-                animationBack.start()
-                showingFront = false
-
-                displayTerm()
-
+                flipToBack()
             } else {
-                animationFront.setTarget(cardBack)
-                animationBack.setTarget(cardFront)
-                animationBack.start()
-                animationFront.start()
-                showingFront = true
-
-                displayDef()
-
+                flipToFront()
             }
         }
 
         buttonNext.setOnClickListener() { // go next
             currentIndex = (currentIndex + 1) % flashcardList.size
-
-            if(showingFront) {
-                displayDef()
-            } else {
-                displayTerm()
-            }
-
+            flashcardActivityViewModel.currentIndex = currentIndex
+            handleCardChange()
         }
 
         buttonPrevious.setOnClickListener() { // go previous
-
+            currentIndex = (currentIndex - 1) % flashcardList.size
+            if(currentIndex < 0) currentIndex = flashcardList.size - 1
+            flashcardActivityViewModel.currentIndex = currentIndex
+            handleCardChange()
         }
+    }
 
+    private fun handleCardChange() {
+        if(showingFront) { // we want the next button not to spoil the answer :)
+            displayDef()
+        } else {
+            showingFront = false // don't anin
+            displayTerm()
+        }
+    }
+
+    private fun flipToBack() {
+        animationFront.setTarget(cardFront)
+        animationBack.setTarget(cardBack)
+        animationFront.start()
+        animationBack.start()
+        showingFront = false
+        displayTerm()
+    }
+
+    private fun flipToFront() {
+        animationFront.setTarget(cardBack)
+        animationBack.setTarget(cardFront)
+        animationBack.start()
+        animationFront.start()
+        showingFront = true
+
+        displayDef()
     }
 
     private fun displayTerm() {
