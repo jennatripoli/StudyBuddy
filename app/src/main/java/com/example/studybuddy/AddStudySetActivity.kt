@@ -74,9 +74,12 @@ class AddStudySetActivity : AppCompatActivity() {
             val termEditText = dialog.findViewById(R.id.study_set_term) as EditText
             val defEditText = dialog.findViewById(R.id.study_set_definition) as EditText
             val addBtn = dialog.findViewById(R.id.save_term) as Button
-            val deleteBtn = dialog.findViewById(R.id.delete_term) as Button // TODO: Implement this
+            val deleteBtn = dialog.findViewById(R.id.delete_term) as Button
 
-            addBtn.setOnClickListener() {
+            val cancelTip = dialog.findViewById(R.id.delete_term_caption) as TextView
+            cancelTip.text = "cancel"
+
+            addBtn.setOnClickListener() { // add the flashcard
                 val term = termEditText.text.toString()
                 val def = defEditText.text.toString()
                 if (term != "" && def != "") {
@@ -86,6 +89,11 @@ class AddStudySetActivity : AppCompatActivity() {
                     }
                 }
             }
+
+            deleteBtn.setOnClickListener { // close the dialog
+                dialog.cancel()
+            }
+
             dialog.show()
             dialog.window?.attributes = l
         }
