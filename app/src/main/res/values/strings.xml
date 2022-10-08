@@ -40,4 +40,7 @@
     <string name="card_flip">Flip</string>
     <string name="card_front">Card Front</string>
     <string name="card_back">Card Back</string>
+
+    <string name="note_title">View Notes</string>
+
 </resources>
