@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.studybuddy.database.FlashcardEntity
 import com.example.studybuddy.recyclerview.FlashcardAdapter
 import com.example.studybuddy.recyclerview.FlashcardDataSource
 import kotlinx.coroutines.Dispatchers
@@ -77,7 +78,7 @@ class AddStudySetActivity : AppCompatActivity() {
             val deleteBtn = dialog.findViewById(R.id.delete_term) as Button
 
             val cancelTip = dialog.findViewById(R.id.delete_term_caption) as TextView
-            cancelTip.text = "cancel"
+            cancelTip.text = getString(R.string.cancel_term)
 
             addBtn.setOnClickListener() { // add the flashcard
                 val term = termEditText.text.toString()
@@ -103,4 +104,11 @@ class AddStudySetActivity : AppCompatActivity() {
             startActivityForResult(intent, REQUEST_CODE_FLASHCARD)
         }
     }
+
+    fun deleteFlashcard(flashcard : FlashcardEntity) {
+        GlobalScope.launch {
+            flashcardDataSource.deleteFlashcard(flashcard)
+        }
+    }
+
 }

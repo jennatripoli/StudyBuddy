@@ -35,6 +35,7 @@
     <string name="edit_term">Edit Term</string>
     <string name="delete_term">delete term</string>
     <string name="save_term">save term</string>
+    <string name="cancel_term">cancel</string>
 
     <string name="card_flip">Flip</string>
     <string name="card_front">Card Front</string>

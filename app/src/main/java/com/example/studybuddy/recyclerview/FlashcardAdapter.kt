@@ -43,12 +43,14 @@ class FlashcardAdapter (val activity: Activity, private val flashcards : List<Fl
                 val deleteBtn = dialog.findViewById(R.id.delete_term) as Button
 
                 addBtn.setOnClickListener() { // update the flashcard
-
+                    dialog.cancel()
                 }
 
                 deleteBtn.setOnClickListener() { // delete the flashcard
-
+                    (activity as AddStudySetActivity).deleteFlashcard(flashcard)
+                    dialog.cancel()
                 }
+
                 dialog.show()
                 dialog.window?.attributes = l
             }

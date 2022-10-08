@@ -71,6 +71,30 @@ class FlashcardDataSource private constructor(coroutineScope: CoroutineScope = G
     }
 
     /**
+     * Deletes a flashcard from the data base and recycler view
+     */
+    suspend fun deleteFlashcard(flashcard: FlashcardEntity) {
+
+        // delete flashcard from database
+        db?.deleteFlashcard(flashcard)
+
+        // remove from live data
+        val currentList = flashcardLiveData.value
+
+        if(currentList != null) {
+            val updatedList = currentList.toMutableList()
+
+            for(aFlashcard in updatedList) {
+                if(aFlashcard.id == flashcard.id ) {
+                    updatedList.remove(aFlashcard)
+                    break
+                }
+            }
+            flashcardLiveData.postValue(updatedList)
+        }
+    }
+
+    /**
      * Returns all of the live data
      */
     fun getFlashcardList() : LiveData<List<FlashcardEntity>> {
