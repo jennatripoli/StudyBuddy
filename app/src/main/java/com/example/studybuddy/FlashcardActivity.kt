@@ -41,9 +41,13 @@ class FlashcardActivity : AppCompatActivity() {
 
         stringStudySetName = intent.getStringExtra(EXTRA_FLASHCARD_SET).toString() // gets the name of the study set to pull from
 
+        currentIndex = if(flashcardActivityViewModel.currentIndex == null) 0
+        else flashcardActivityViewModel.currentIndex!!
+
+        Log.d(TAG, "$currentIndex")
+
         GlobalScope.launch {
             flashcardList = db?.getFlashcardsForStudySet(stringStudySetName)!!
-            Log.d(TAG, "$flashcardList")
             displayTerm()
             displayDef()
         }
@@ -73,6 +77,9 @@ class FlashcardActivity : AppCompatActivity() {
         buttonNext.setOnClickListener() { // go next
             currentIndex = (currentIndex + 1) % flashcardList.size
             flashcardActivityViewModel.currentIndex = currentIndex
+            val index = flashcardActivityViewModel.currentIndex
+            Log.d(TAG, "$index")
+
             handleCardChange()
         }
 
@@ -88,7 +95,7 @@ class FlashcardActivity : AppCompatActivity() {
         if(showingFront) { // we want the next button not to spoil the answer :)
             displayDef()
         } else {
-            showingFront = false // don't anin
+            showingFront = false // don't animate
             displayTerm()
         }
     }
