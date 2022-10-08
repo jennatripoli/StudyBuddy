@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
@@ -18,7 +19,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+private const val TAG = "AddStudySetActivity"
+
 const val REQUEST_CODE_FLASHCARD = 4
+const val EXTRA_FLASHCARD_SET = "com.example.studybuddy.FLASHCARD_SET"
+
 
 class AddStudySetActivity : AppCompatActivity() {
 
@@ -30,6 +35,11 @@ class AddStudySetActivity : AppCompatActivity() {
     private lateinit var flashcardRecycler : RecyclerView
     private lateinit var flashcardAdapter: FlashcardAdapter
     private lateinit var flashcardDataSource: FlashcardDataSource
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
+        super.onActivityResult(requestCode, resultCode, intent)
+        Log.d(TAG, "Activity Finished")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,11 +108,14 @@ class AddStudySetActivity : AppCompatActivity() {
             dialog.window?.attributes = l
         }
 
-        buttonFlashcards.setOnClickListener() {
-            val intent = Intent(this@AddStudySetActivity, FlashcardActivity::class.java)
+        buttonFlashcards.setOnClickListener() {  // launch the flashcard activity
+            val intent = Intent(this@AddStudySetActivity, FlashcardActivity::class.java).apply {
+                putExtra(EXTRA_FLASHCARD_SET, stringStudySetName) // send the name of the study set to the flashcard activity
+            }
             startActivityForResult(intent, REQUEST_CODE_FLASHCARD)
         }
     }
+
     fun updateFlashcard(flashcard: FlashcardEntity) {
         GlobalScope.launch {
             flashcardDataSource.updateFlashcard(flashcard.id, flashcard.term, flashcard.definition, flashcard.studySetName)
