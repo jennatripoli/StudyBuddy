@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
@@ -65,7 +64,7 @@ class AddStudySetActivity : AppCompatActivity() {
         buttonAddTerm.setOnClickListener() {
             val dialog = Dialog(this)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setContentView(R.layout.activity_edit_study_set_term)
+            dialog.setContentView(R.layout.layout_edit_study_set_term)
 
             val l = WindowManager.LayoutParams()
             l.copyFrom(dialog.window?.attributes)

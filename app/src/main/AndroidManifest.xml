@@ -18,9 +18,6 @@
             android:name=".FlashcardActivity"
             android:exported="false" />
         <activity
-            android:name=".EditStudySetTermActivity"
-            android:exported="false" />
-        <activity
             android:name=".PomodoroActivity"
             android:exported="false" />
         <activity

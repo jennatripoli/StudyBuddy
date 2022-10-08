@@ -30,7 +30,7 @@ class FlashcardAdapter (val activity: Activity, private val flashcards : List<Fl
 
                 val dialog = Dialog(activity)
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-                dialog.setContentView(R.layout.activity_edit_study_set_term)
+                dialog.setContentView(R.layout.layout_edit_study_set_term)
 
                 val l = WindowManager.LayoutParams()
                 l.copyFrom(dialog.window?.attributes)
