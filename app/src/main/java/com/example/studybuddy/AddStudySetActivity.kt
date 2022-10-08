@@ -46,6 +46,11 @@ class AddStudySetActivity : AppCompatActivity() {
         flashcardRecycler.layoutManager = LinearLayoutManager(this)
 
         flashcardDataSource = FlashcardDataSource.getDataSource()
+
+        GlobalScope.launch { // we only want flashcards of this study set to populate the recycler view
+            flashcardDataSource.updateLiveData(stringStudySetName)
+        }
+
         val liveData = flashcardDataSource.getFlashcardList()
 
         liveData.observe(this) {
@@ -54,6 +59,7 @@ class AddStudySetActivity : AppCompatActivity() {
                 flashcardRecycler.adapter = flashcardAdapter
             }
         }
+
 
         buttonAddTerm.setOnClickListener() {
             val dialog = Dialog(this)
@@ -74,7 +80,6 @@ class AddStudySetActivity : AppCompatActivity() {
                 val term = termEditText.text.toString()
                 val def = defEditText.text.toString()
                 if (term != "" && def != "") {
-                    Log.d("MAIN", "They were not null")
                     GlobalScope.launch(Dispatchers.IO) {
                         flashcardDataSource.insertFlashcard(term, def, stringStudySetName)
                         dialog.cancel()

@@ -24,6 +24,9 @@ class FlashcardDataSource private constructor(coroutineScope: CoroutineScope = G
             flashcardLiveData = MutableLiveData(db?.getAllFlashcards())
         }
     }
+    suspend fun updateLiveData(studySetNameString : String) {
+        flashcardLiveData.postValue(db?.getFlashcardsForStudySet(studySetNameString))
+    }
 
     /**
      * Insert a flash card into the recycler view
