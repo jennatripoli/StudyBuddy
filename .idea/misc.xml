@@ -5,18 +5,17 @@
       <map>
         <entry key="..\:/Users/samka/AndroidStudioProjects/StudyBuddy/app/src/main/res/layout/activity_add_study_set.xml" value="0.22708333333333333" />
         <entry key="..\:/Users/samka/AndroidStudioProjects/StudyBuddy/app/src/main/res/layout/activity_edit_study_set_term.xml" value="0.3890625" />
+        <entry key="..\:/Users/samka/AndroidStudioProjects/StudyBuddy/app/src/main/res/layout/activity_flashcard.xml" value="0.48072916666666665" />
         <entry key="..\:/Users/samka/AndroidStudioProjects/StudyBuddy/app/src/main/res/layout/item_study_set.xml" value="0.3734375" />
         <entry key="..\:/Users/samka/AndroidStudioProjects/StudyBuddy/app/src/main/res/layout/item_study_set_term.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/drawable/circle_button.xml" value="0.1655" />
         <entry key="app/src/main/res/layout/activity_add_study_set.xml" value="0.2078804347826087" />
-        <entry key="app/src/main/res/layout/activity_edit_study_set_term.xml" value="0.21612195001132245" />
-        <entry key="app/src/main/res/layout/activity_flashcard.xml" value="0.19314583698183824" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18395177868829254" />
         <entry key="app/src/main/res/layout/activity_pomodoro.xml" value="0.2078804347826087" />
         <entry key="app/src/main/res/layout/activity_view_study_set.xml" value="0.19896240234375" />
         <entry key="app/src/main/res/layout/activity_view_studyset.xml" value="0.17916666666666667" />
-        <entry key="app/src/main/res/layout/item_study_set.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/item_study_set_term.xml" value="0.23005076948418673" />
+        <entry key="app/src/main/res/layout/item_study_set.xml" value="0.27325682709182525" />
+        <entry key="app/src/main/res/layout/item_study_set_term.xml" value="0.6159638554216867" />
         <entry key="app/src/main/res/layout/item_studyset_term.xml" value="0.17916666666666667" />
       </map>
     </option>

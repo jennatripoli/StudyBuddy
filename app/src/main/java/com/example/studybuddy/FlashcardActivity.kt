@@ -19,6 +19,8 @@ private const val TAG = "FlashcardActivity"
 class FlashcardActivity : AppCompatActivity() {
 
     private lateinit var buttonFlip : Button
+    private lateinit var buttonNext : Button
+    private lateinit var buttonPrevious : Button
     private lateinit var cardFront : TextView
     private lateinit var cardBack : TextView
     private lateinit var stringStudySetName : String
@@ -27,6 +29,7 @@ class FlashcardActivity : AppCompatActivity() {
     private lateinit var flashcardList: List<FlashcardEntity>
 
     private val flashcardActivityViewModel : FlashcardActivityViewModel by viewModels()
+    private var currentIndex = 0 // TODO: Need to set this based on view model, keep as is for now
 
     private lateinit var animationFront : AnimatorSet
     private lateinit var animationBack : AnimatorSet
@@ -41,9 +44,13 @@ class FlashcardActivity : AppCompatActivity() {
         GlobalScope.launch {
             flashcardList = db?.getFlashcardsForStudySet(stringStudySetName)!!
             Log.d(TAG, "$flashcardList")
+            displayTerm()
+            displayDef()
         }
 
         buttonFlip = findViewById(R.id.card_flip)
+        buttonNext = findViewById(R.id.next_term)
+        buttonPrevious = findViewById(R.id.previous_term)
         cardFront = findViewById(R.id.card_front)
         cardBack = findViewById(R.id.card_back)
 
@@ -54,20 +61,53 @@ class FlashcardActivity : AppCompatActivity() {
         animationFront = AnimatorInflater.loadAnimator(applicationContext, R.animator.animator_front) as AnimatorSet
         animationBack = AnimatorInflater.loadAnimator(applicationContext, R.animator.animator_back) as AnimatorSet
 
-        buttonFlip.setOnClickListener {
+
+        buttonFlip.setOnClickListener { // flips the flashcard
             if (showingFront) {
                 animationFront.setTarget(cardFront)
                 animationBack.setTarget(cardBack)
                 animationFront.start()
                 animationBack.start()
                 showingFront = false
+
+                displayTerm()
+
             } else {
                 animationFront.setTarget(cardBack)
                 animationBack.setTarget(cardFront)
                 animationBack.start()
                 animationFront.start()
                 showingFront = true
+
+                displayDef()
+
             }
         }
+
+        buttonNext.setOnClickListener() { // go next
+            currentIndex = (currentIndex + 1) % flashcardList.size
+
+            if(showingFront) {
+                displayDef()
+            } else {
+                displayTerm()
+            }
+
+        }
+
+        buttonPrevious.setOnClickListener() { // go previous
+
+        }
+
     }
+
+    private fun displayTerm() {
+        cardBack.text = flashcardList[currentIndex].term
+    }
+
+    private fun displayDef() {
+        cardFront.text = flashcardList[currentIndex].definition
+    }
+
+
 }
