@@ -44,19 +44,17 @@ class FlashcardActivity : AppCompatActivity() {
         currentIndex = if(flashcardActivityViewModel.currentIndex == null) 0
         else flashcardActivityViewModel.currentIndex!!
 
-        Log.d(TAG, "$currentIndex")
+        buttonFlip = findViewById(R.id.card_flip)
+        buttonNext = findViewById(R.id.next_term)
+        buttonPrevious = findViewById(R.id.previous_term)
+        cardFront = findViewById(R.id.card_front)
+        cardBack = findViewById(R.id.card_back)
 
         GlobalScope.launch {
             flashcardList = db?.getFlashcardsForStudySet(stringStudySetName)!!
             displayTerm()
             displayDef()
         }
-
-        buttonFlip = findViewById(R.id.card_flip)
-        buttonNext = findViewById(R.id.next_term)
-        buttonPrevious = findViewById(R.id.previous_term)
-        cardFront = findViewById(R.id.card_front)
-        cardBack = findViewById(R.id.card_back)
 
         val scale = applicationContext.resources.displayMetrics.density
         cardFront.cameraDistance = 8000 * scale
