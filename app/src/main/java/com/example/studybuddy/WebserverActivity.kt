@@ -68,10 +68,15 @@ class WebserverActivity : AppCompatActivity() {
 
             if(searchTerm != "") {
                 GlobalScope.launch(Dispatchers.Main){
-                    val list : List<JSON> = networkAPI.fetchDefinition(searchTerm)
-                    def = list[0].meanings[0].defs[0].def
-                    textDefinition.text = def
-                    progressBar.visibility = View.INVISIBLE
+                   try {
+                       val list: List<JSON> = networkAPI.fetchDefinition(searchTerm)
+                       def = list[0].meanings[0].defs[0].def
+                       textDefinition.text = def
+                       progressBar.visibility = View.INVISIBLE
+                   } catch (e : Exception) {
+                       progressBar.visibility = View.INVISIBLE
+                       textDefinition.text = getString(R.string.unable_to_find)
+                   }
                 }
             }
         }

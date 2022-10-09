@@ -41,9 +41,10 @@
     <string name="card_front">Card Front</string>
     <string name="card_back">Card Back</string>
 
-    <string name="webserver_title">Search In Dictionary</string>
-    <string name="webserver_description">Need help defining a word or term? Input it below and we will check a dictionary web-api to give you an answer!</string>
+    <string name="webserver_title">Search Vocab In Dictionary</string>
+    <string name="webserver_description">Need help defining a word? Input it below and we will check a dictionary web-api to give you an answer!</string>
     <string name="webserver_search_tip">word to lookup</string>
     <string name="search">Search</string>
+    <string name="unable_to_find">Unable to find the requested word</string>
 
 </resources>
