@@ -24,6 +24,7 @@ class WebserverActivity : AppCompatActivity() {
 
     private lateinit var editTextSearch : EditText
     private lateinit var buttonSearch : Button
+    private lateinit var buttonMicrophone : Button
     private lateinit var textDefinition : TextView
     private lateinit var progressBar : ProgressBar
 
@@ -35,6 +36,7 @@ class WebserverActivity : AppCompatActivity() {
 
         editTextSearch = findViewById(R.id.search_text)
         buttonSearch = findViewById(R.id.search_btn)
+        buttonMicrophone = findViewById(R.id.microphone_btn)
         textDefinition = findViewById(R.id.definition_text)
         progressBar = findViewById(R.id.progress_bar)
 
@@ -45,6 +47,10 @@ class WebserverActivity : AppCompatActivity() {
         } catch (e : Exception) { // exit intent if there was an issue
             Log.d(TAG, "There was an issue connection the dictionary API")
             finish()
+        }
+
+        buttonMicrophone.setOnClickListener() { // microphone button press
+
         }
 
         buttonSearch.setOnClickListener() { // on search

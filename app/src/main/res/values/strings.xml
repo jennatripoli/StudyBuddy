@@ -18,6 +18,7 @@
     <string name="book">📖</string>
     <string name="edit">✏️</string>
     <string name="save">💾️</string>
+    <string name="microphone">🎙</string>
 
     <string name="study_set_name">Study Set Name</string>
     <string name="study_set_term">Term</string>
