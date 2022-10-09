@@ -7,8 +7,10 @@ import android.speech.RecognizerIntent
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.activity.viewModels
 import com.example.studybuddy.networkapi.JSON
 import com.example.studybuddy.networkapi.NetworkAPI
+import com.example.studybuddy.viewmodels.WebserverDefViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Dispatchers
@@ -36,6 +38,8 @@ class WebserverActivity : AppCompatActivity() {
 
     private lateinit var networkAPI : NetworkAPI
 
+    private val webserverDefViewModel : WebserverDefViewModel by viewModels()
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == REQUEST_CODE_MICROPHONE && resultCode == RESULT_OK && data != null) {
@@ -62,6 +66,8 @@ class WebserverActivity : AppCompatActivity() {
             Log.d(TAG, "There was an issue connection the dictionary API")
             finish()
         }
+
+        if(webserverDefViewModel.currentDef != null) textDefinition.text = webserverDefViewModel.currentDef // check view model
 
         buttonMicrophone.setOnClickListener() { // microphone button press
 
@@ -118,7 +124,8 @@ class WebserverActivity : AppCompatActivity() {
                 try {
                     val list: List<JSON> = networkAPI.fetchDefinition(searchTerm)
                     def = list[0].meanings[0].defs[0].def
-                    textDefinition.text = def
+                    webserverDefViewModel.currentDef = def // put into view model
+                    textDefinition.text = def // set text field
                     progressBar.visibility = View.INVISIBLE
                 } catch (e : Exception) {
                     progressBar.visibility = View.INVISIBLE
