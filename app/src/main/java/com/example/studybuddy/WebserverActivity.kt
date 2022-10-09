@@ -3,8 +3,10 @@ package com.example.studybuddy
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import com.example.studybuddy.networkapi.JSON
 import com.example.studybuddy.networkapi.NetworkAPI
@@ -26,6 +28,7 @@ class WebserverActivity : AppCompatActivity() {
     private lateinit var editTextSearch : EditText
     private lateinit var buttonSearch : Button
     private lateinit var textDefinition : TextView
+    private lateinit var progressBar : ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +37,7 @@ class WebserverActivity : AppCompatActivity() {
         editTextSearch = findViewById(R.id.search_text)
         buttonSearch = findViewById(R.id.search_btn)
         textDefinition = findViewById(R.id.definition_text)
+        progressBar = findViewById(R.id.progress_bar)
 
         // declare moshi for json parsing
         val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
@@ -48,30 +52,28 @@ class WebserverActivity : AppCompatActivity() {
         // create a network api interface
         val networkAPI: NetworkAPI = retrofit.create()
 
+        // progress bar is invisible
+        progressBar.visibility = View.INVISIBLE
+
         buttonSearch.setOnClickListener() {
 
+            // start progress bar
+            progressBar.visibility = View.VISIBLE
+
+            // definition init
             var def = ""
 
+            // get term to search
             val searchTerm = editTextSearch.text.toString()
 
             if(searchTerm != "") {
-
                 GlobalScope.launch(Dispatchers.Main){
                     val list : List<JSON> = networkAPI.fetchDefinition(searchTerm)
                     def = list[0].meanings[0].defs[0].def
                     textDefinition.text = def
+                    progressBar.visibility = View.INVISIBLE
                 }
-
-
-
             }
         }
-
-
-
-
-
-
-
     }
 }

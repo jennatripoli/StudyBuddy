@@ -69,6 +69,17 @@
         app:layout_constraintBottom_toBottomOf="@id/search_text"
         />
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="75dp"
+        android:minWidth="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+    </ProgressBar>
+
     <TextView
         android:id = "@+id/definition_text"
         tools:text="Tools Text: Definition Goes Here"
