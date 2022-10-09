@@ -29,7 +29,7 @@ class FlashcardActivity : AppCompatActivity() {
     private lateinit var flashcardList: List<FlashcardEntity>
 
     private val flashcardActivityViewModel : FlashcardActivityViewModel by viewModels()
-    private var currentIndex = 0 // TODO: Need to set this based on view model, keep as is for now
+    private var currentIndex = 0
 
     private lateinit var animationFront : AnimatorSet
     private lateinit var animationBack : AnimatorSet
@@ -64,7 +64,6 @@ class FlashcardActivity : AppCompatActivity() {
 
         animationFront = AnimatorInflater.loadAnimator(applicationContext, R.animator.animator_front) as AnimatorSet
         animationBack = AnimatorInflater.loadAnimator(applicationContext, R.animator.animator_back) as AnimatorSet
-
 
         buttonFlip.setOnClickListener { // flips the flashcard
             if (showingFront) {

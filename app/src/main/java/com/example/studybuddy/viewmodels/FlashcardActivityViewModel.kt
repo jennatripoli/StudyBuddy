@@ -12,6 +12,4 @@ class FlashcardActivityViewModel(private val savedStateHandle: SavedStateHandle)
         get() = savedStateHandle[CURRENT_INDEX_KEY]
         set(value) = savedStateHandle.set(CURRENT_INDEX_KEY, value)
 
-
-
 }
