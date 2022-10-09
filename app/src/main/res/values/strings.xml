@@ -43,6 +43,7 @@
 
     <string name="webserver_title">Search In Dictionary</string>
     <string name="webserver_description">Need help defining a word or term? Input it below and we will check a dictionary web-api to give you an answer!</string>
-    <string name="webserver_search_tip">search</string>
+    <string name="webserver_search_tip">word to lookup</string>
+    <string name="search">Search</string>
 
 </resources>
