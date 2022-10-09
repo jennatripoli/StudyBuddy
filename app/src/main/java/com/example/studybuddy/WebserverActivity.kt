@@ -3,6 +3,7 @@ package com.example.studybuddy
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.studybuddy.networkapi.JSON
 import com.example.studybuddy.networkapi.NetworkAPI
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -29,6 +30,7 @@ class WebserverActivity : AppCompatActivity() {
         // create retrofit object at the base url
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(baseURL)
+            .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
 
@@ -36,8 +38,8 @@ class WebserverActivity : AppCompatActivity() {
         val networkAPI: NetworkAPI = retrofit.create()
 
         GlobalScope.launch {
-            val JSON = networkAPI.fetchDefinition()
-            Log.d(TAG, "$JSON")
+            val list : List<JSON> = networkAPI.fetchDefinition()
+            Log.d(TAG, list[0].meanings[0].defs[0].def)
         }
 
 

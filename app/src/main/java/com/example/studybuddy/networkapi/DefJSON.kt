@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class JSON (
         @Json(name = "word") val word : String,
-        @Json(name = "meanings") val meanings: Meanings
+        @Json(name = "meanings") val meanings: List<Meanings>
         )
 
 @JsonClass(generateAdapter = true)

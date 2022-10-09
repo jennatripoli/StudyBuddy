@@ -8,6 +8,6 @@ import retrofit2.http.Query
 interface NetworkAPI {
 
     @GET("/api/v2/entries/en/hello")
-    suspend fun fetchDefinition() : JSON
+    suspend fun fetchDefinition() : List<JSON>
 
 }
