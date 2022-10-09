@@ -4,10 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import com.example.studybuddy.networkapi.JSON
 import com.example.studybuddy.networkapi.NetworkAPI
 import com.squareup.moshi.Moshi
@@ -86,7 +83,7 @@ class WebserverActivity : AppCompatActivity() {
         // get term to search
         val searchTerm = editTextSearch.text.toString()
 
-        if(searchTerm != "") {
+        if(searchTerm != "") { // user attempts to enter a term
             GlobalScope.launch(Dispatchers.Main){
                 try {
                     val list: List<JSON> = networkAPI.fetchDefinition(searchTerm)
@@ -98,6 +95,11 @@ class WebserverActivity : AppCompatActivity() {
                     textDefinition.text = getString(R.string.unable_to_find)
                 }
             }
+        } else { // user did not enter a term
+            progressBar.visibility = View.INVISIBLE
+            val toast = Toast.makeText(applicationContext, "Please Enter a Term!", Toast.LENGTH_LONG)
+            toast.show()
+            return
         }
     }
 }
