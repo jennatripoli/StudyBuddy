@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var buttonAddStudySet : Button
     private lateinit var buttonPomodoro : Button
+    private lateinit var buttonDictionary : Button
 
     private lateinit var studySetRecycler : RecyclerView
     private lateinit var studySetAdapter : StudySetAdapter
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         buttonAddStudySet = findViewById(R.id.add_study_set)
         buttonPomodoro = findViewById(R.id.study_plan)
+        buttonDictionary = findViewById(R.id.log_in)
 
         studySetRecycler = findViewById(R.id.study_set_list)
         studySetRecycler.layoutManager = LinearLayoutManager(this)
@@ -64,6 +66,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, PomodoroActivity::class.java)
             startActivityForResult(intent, REQUEST_CODE_POMODORO)
         }
+
+        buttonDictionary.setOnClickListener() {
+            val intent = Intent(this@MainActivity, WebserverActivity::class.java)
+            startActivityForResult(intent, 10)
+        }
+
     }
 
     private fun createNewStudySet() {
