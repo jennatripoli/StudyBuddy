@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WebserverActivity">
+
+    <TextView
+        android:id = "@+id/webserver_title"
+        android:text="@string/webserver_title"
+
+        android:textSize="25sp"
+        android:textStyle="bold"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id = "@+id/search_description"
+        android:text="@string/webserver_description"
+
+        android:textSize="18sp"
+        android:gravity="center"
+
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/webserver_title"
+        app:layout_constraintLeft_toLeftOf="@id/webserver_title"
+        app:layout_constraintRight_toRightOf="@id/webserver_title" />
+
+    <EditText
+        android:id = "@+id/search_text"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/search_description"
+        app:layout_constraintLeft_toLeftOf="@id/search_description"
+        app:layout_constraintRight_toRightOf="@id/search_description"
+        android:layout_marginTop="30dp"
+        android:hint="@string/webserver_search_tip"
+        >
+    </EditText>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
