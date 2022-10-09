@@ -24,16 +24,16 @@ class FlashcardActivity : AppCompatActivity() {
     private lateinit var cardFront : TextView
     private lateinit var cardBack : TextView
     private lateinit var stringStudySetName : String
-
-    private val db = AppDatabase.getInstance(BaseApplication.getContext())?.dao
     private lateinit var flashcardList: List<FlashcardEntity>
-
-    private val flashcardActivityViewModel : FlashcardActivityViewModel by viewModels()
     private var currentIndex = 0
 
     private lateinit var animationFront : AnimatorSet
     private lateinit var animationBack : AnimatorSet
     private var showingFront = true
+
+    private val db = AppDatabase.getInstance(BaseApplication.getContext())?.dao
+
+    private val flashcardActivityViewModel : FlashcardActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +41,7 @@ class FlashcardActivity : AppCompatActivity() {
 
         stringStudySetName = intent.getStringExtra(EXTRA_FLASHCARD_SET).toString() // gets the name of the study set to pull from
 
-        currentIndex = if(flashcardActivityViewModel.currentIndex == null) 0
+        currentIndex = if(flashcardActivityViewModel.currentIndex == null) 0 // pull from view model to save state on screen rotation
         else flashcardActivityViewModel.currentIndex!!
 
         buttonFlip = findViewById(R.id.card_flip)
@@ -50,18 +50,18 @@ class FlashcardActivity : AppCompatActivity() {
         cardFront = findViewById(R.id.card_front)
         cardBack = findViewById(R.id.card_back)
 
-        GlobalScope.launch {
-            flashcardList = db?.getFlashcardsForStudySet(stringStudySetName)!!
-            displayTerm()
-            displayDef()
-        }
-
-        val scale = applicationContext.resources.displayMetrics.density
+        val scale = applicationContext.resources.displayMetrics.density // init all animation proporties
         cardFront.cameraDistance = 8000 * scale
         cardBack.cameraDistance = 8000 * scale
 
         animationFront = AnimatorInflater.loadAnimator(applicationContext, R.animator.animator_front) as AnimatorSet
         animationBack = AnimatorInflater.loadAnimator(applicationContext, R.animator.animator_back) as AnimatorSet
+
+        GlobalScope.launch { // init the flashcard list and initial flashcard
+            flashcardList = db?.getFlashcardsForStudySet(stringStudySetName)!!
+            displayTerm()
+            displayDef()
+        }
 
         buttonFlip.setOnClickListener { // flips the flashcard
             if (showingFront) {
@@ -74,9 +74,6 @@ class FlashcardActivity : AppCompatActivity() {
         buttonNext.setOnClickListener() { // go next
             currentIndex = (currentIndex + 1) % flashcardList.size
             flashcardActivityViewModel.currentIndex = currentIndex
-            val index = flashcardActivityViewModel.currentIndex
-            Log.d(TAG, "$index")
-
             handleCardChange()
         }
 
@@ -89,10 +86,9 @@ class FlashcardActivity : AppCompatActivity() {
     }
 
     private fun handleCardChange() {
-        if(showingFront) { // we want the next button not to spoil the answer :)
+        if(showingFront) {
             displayDef()
         } else {
-            showingFront = false // don't animate
             displayTerm()
         }
     }
@@ -123,6 +119,5 @@ class FlashcardActivity : AppCompatActivity() {
     private fun displayDef() {
         cardFront.text = flashcardList[currentIndex].definition
     }
-
 
 }
