@@ -38,7 +38,7 @@ class WebserverActivity : AppCompatActivity() {
         val networkAPI: NetworkAPI = retrofit.create()
 
         GlobalScope.launch {
-            val list : List<JSON> = networkAPI.fetchDefinition()
+            val list : List<JSON> = networkAPI.fetchDefinition("dance")
             Log.d(TAG, list[0].meanings[0].defs[0].def)
         }
 

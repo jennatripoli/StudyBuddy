@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface NetworkAPI {
 
-    @GET("/api/v2/entries/en/hello")
-    suspend fun fetchDefinition() : List<JSON>
+    @GET("/api/v2/entries/en/{word}")
+    suspend fun fetchDefinition(@Path("word") word : String) : List<JSON>
 
 }
