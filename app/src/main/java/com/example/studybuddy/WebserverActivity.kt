@@ -30,6 +30,8 @@ class WebserverActivity : AppCompatActivity() {
     private lateinit var textDefinition : TextView
     private lateinit var progressBar : ProgressBar
 
+    private lateinit var networkAPI : NetworkAPI
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_webserver)
@@ -39,6 +41,24 @@ class WebserverActivity : AppCompatActivity() {
         textDefinition = findViewById(R.id.definition_text)
         progressBar = findViewById(R.id.progress_bar)
 
+        progressBar.visibility = View.INVISIBLE // init as invisible
+
+        try { // init the network api
+            networkAPI = initNetworkAPI()
+        } catch (e : Exception) { // exit intent if there was an issue
+            Log.d(TAG, "There was an issue connection the dictionary API")
+            finish()
+        }
+
+        buttonSearch.setOnClickListener() { // on search
+            searchApiForDefinition(networkAPI)
+        }
+    }
+
+    /**
+     * Initializes the retrofit API and Moshi JSON parsing
+     */
+    private fun initNetworkAPI(): NetworkAPI {
         // declare moshi for json parsing
         val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
@@ -49,34 +69,33 @@ class WebserverActivity : AppCompatActivity() {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
 
-        // create a network api interface
-        val networkAPI: NetworkAPI = retrofit.create()
+        // create a network api interface and return
+        return retrofit.create()
+    }
 
-        // progress bar is invisible
-        progressBar.visibility = View.INVISIBLE
+    /**
+     * Searches the dictionary API at the baseurl for the inputted word
+     */
+    private fun searchApiForDefinition(networkAPI : NetworkAPI) {
+        // start progress bar
+        progressBar.visibility = View.VISIBLE
 
-        buttonSearch.setOnClickListener() {
+        // definition init
+        var def : String
 
-            // start progress bar
-            progressBar.visibility = View.VISIBLE
+        // get term to search
+        val searchTerm = editTextSearch.text.toString()
 
-            // definition init
-            var def = ""
-
-            // get term to search
-            val searchTerm = editTextSearch.text.toString()
-
-            if(searchTerm != "") {
-                GlobalScope.launch(Dispatchers.Main){
-                   try {
-                       val list: List<JSON> = networkAPI.fetchDefinition(searchTerm)
-                       def = list[0].meanings[0].defs[0].def
-                       textDefinition.text = def
-                       progressBar.visibility = View.INVISIBLE
-                   } catch (e : Exception) {
-                       progressBar.visibility = View.INVISIBLE
-                       textDefinition.text = getString(R.string.unable_to_find)
-                   }
+        if(searchTerm != "") {
+            GlobalScope.launch(Dispatchers.Main){
+                try {
+                    val list: List<JSON> = networkAPI.fetchDefinition(searchTerm)
+                    def = list[0].meanings[0].defs[0].def
+                    textDefinition.text = def
+                    progressBar.visibility = View.INVISIBLE
+                } catch (e : Exception) {
+                    progressBar.visibility = View.INVISIBLE
+                    textDefinition.text = getString(R.string.unable_to_find)
                 }
             }
         }
