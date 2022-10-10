@@ -2,7 +2,6 @@
     <string name="app_name">Study Buddy</string>
     <string name="add_study_set">add a new study set</string>
     <string name="play_flashcard">study flashcards</string>
-    <string name="test_start">take practice test</string>
     <string name="study_plan">study plan</string>
     <string name="webserver_caption">dictionary</string>
 
@@ -42,10 +41,10 @@
     <string name="card_front">Card Front</string>
     <string name="card_back">Card Back</string>
 
-    <string name="webserver_title">Search Vocabulary In Dictionary</string>
-    <string name="webserver_description">Need help defining a word? Input it below and we will check a dictionary web-api to give you an answer!</string>
-    <string name="webserver_search_tip">word to lookup</string>
+    <string name="webserver_title">Dictionary Search</string>
+    <string name="webserver_description">Need help defining a vocabulary word? Type the word below and a dictionary web API will search for its definition!</string>
+    <string name="webserver_search_tip">vocabulary word</string>
     <string name="search">Search</string>
-    <string name="unable_to_find">Unable to find the requested word</string>
+    <string name="unable_to_find">Unable to find the requested word.</string>
 
 </resources>
