@@ -10,6 +10,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studybuddy.database.FlashcardEntity
@@ -108,11 +109,19 @@ class AddStudySetActivity : AppCompatActivity() {
             dialog.window?.attributes = l
         }
 
-        buttonFlashcards.setOnClickListener() {  // launch the flashcard activity
-            val intent = Intent(this@AddStudySetActivity, FlashcardActivity::class.java).apply {
-                putExtra(EXTRA_FLASHCARD_SET, stringStudySetName) // send the name of the study set to the flashcard activity
+        buttonFlashcards.setOnClickListener() {
+            if(liveData.value?.isNotEmpty() == true) { // make sure that we actual have data
+                val intent = Intent(this@AddStudySetActivity, FlashcardActivity::class.java).apply {
+                    putExtra(
+                        EXTRA_FLASHCARD_SET,
+                        stringStudySetName
+                    ) // send the name of the study set to the flashcard activity
+                }
+                startActivityForResult(intent, REQUEST_CODE_FLASHCARD)
+            } else{
+                val toast = Toast.makeText(applicationContext, "Please Add a Term First!", Toast.LENGTH_LONG)
+                toast.show()
             }
-            startActivityForResult(intent, REQUEST_CODE_FLASHCARD)
         }
     }
 
