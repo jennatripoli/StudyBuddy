@@ -50,7 +50,7 @@ class FlashcardActivity : AppCompatActivity() {
         cardFront = findViewById(R.id.card_front)
         cardBack = findViewById(R.id.card_back)
 
-        val scale = applicationContext.resources.displayMetrics.density // init all animation proporties
+        val scale = applicationContext.resources.displayMetrics.density // init all animation properties
         cardFront.cameraDistance = 8000 * scale
         cardBack.cameraDistance = 8000 * scale
 
@@ -87,9 +87,9 @@ class FlashcardActivity : AppCompatActivity() {
 
     private fun handleCardChange() {
         if(showingFront) {
-            displayDef()
-        } else {
             displayTerm()
+        } else {
+            displayDef()
         }
     }
 
@@ -99,7 +99,7 @@ class FlashcardActivity : AppCompatActivity() {
         animationFront.start()
         animationBack.start()
         showingFront = false
-        displayTerm()
+        displayDef()
     }
 
     private fun flipToFront() {
@@ -108,16 +108,15 @@ class FlashcardActivity : AppCompatActivity() {
         animationBack.start()
         animationFront.start()
         showingFront = true
-
-        displayDef()
+        displayTerm()
     }
 
     private fun displayTerm() {
-        cardBack.text = flashcardList[currentIndex].term
+        cardFront.text = flashcardList[currentIndex].term
     }
 
     private fun displayDef() {
-        cardFront.text = flashcardList[currentIndex].definition
+        cardBack.text = flashcardList[currentIndex].definition
     }
 
 }
