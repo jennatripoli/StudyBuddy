@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,11 +15,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-private const val TAG = "MainActivity"
-
-const val EXTRA_SET_NAME = "com.example.studybuddy.SET_NAME"
 const val REQUEST_CODE_ADD_SET = 1
 const val REQUEST_CODE_POMODORO = 2
+const val REQUEST_CODE_DICTIONARY = 3
+const val EXTRA_SET_NAME = "com.example.studybuddy.SET_NAME"
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,7 +32,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         super.onActivityResult(requestCode, resultCode, intent)
-        Log.d(TAG, "Activity Finished")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,9 +66,8 @@ class MainActivity : AppCompatActivity() {
 
         buttonDictionary.setOnClickListener() {
             val intent = Intent(this@MainActivity, WebserverActivity::class.java)
-            startActivityForResult(intent, 10)
+            startActivityForResult(intent, REQUEST_CODE_DICTIONARY)
         }
-
     }
 
     private fun createNewStudySet() {
@@ -91,9 +87,10 @@ class MainActivity : AppCompatActivity() {
 
             val newSetName = newSetNameInput.text.toString()
 
+            // add to recycler view and database
             if(newSetName != "") {
                 GlobalScope.launch(Dispatchers.IO) {
-                    setDataSource.insertStudySet(newSetName) // add to RecyclerView and database
+                    setDataSource.insertStudySet(newSetName)
                 }
             }
         }
@@ -103,10 +100,11 @@ class MainActivity : AppCompatActivity() {
         builder.show()
     }
 
+    // remove from recycler view and database
     fun deleteStudySet(name : String) {
         if(name != "") {
             GlobalScope.launch(Dispatchers.IO) {
-                setDataSource.deleteStudySet(name) // add to RecyclerView and database
+                setDataSource.deleteStudySet(name)
             }
         }
     }

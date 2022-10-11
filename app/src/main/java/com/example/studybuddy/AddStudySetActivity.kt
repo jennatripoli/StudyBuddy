@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
@@ -20,11 +19,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-private const val TAG = "AddStudySetActivity"
-
 const val REQUEST_CODE_FLASHCARD = 4
 const val EXTRA_FLASHCARD_SET = "com.example.studybuddy.FLASHCARD_SET"
-
 
 class AddStudySetActivity : AppCompatActivity() {
 
@@ -33,32 +29,32 @@ class AddStudySetActivity : AppCompatActivity() {
     private lateinit var textStudySetName : TextView
     private lateinit var stringStudySetName : String
 
-    private lateinit var flashcardRecycler : RecyclerView
+    private lateinit var flashcardTermList : RecyclerView
     private lateinit var flashcardAdapter: FlashcardAdapter
     private lateinit var flashcardDataSource: FlashcardDataSource
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         super.onActivityResult(requestCode, resultCode, intent)
-        Log.d(TAG, "Activity Finished")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_study_set)
+        setContentView(R.layout.activity_study_set)
 
         buttonAddTerm = findViewById(R.id.add_term)
-        buttonFlashcards = findViewById(R.id.show_flashcard)
+        buttonFlashcards = findViewById(R.id.play_flashcard)
         textStudySetName = findViewById(R.id.study_set_name)
 
-        stringStudySetName = intent.getStringExtra(EXTRA_SET_NAME).toString() // get the intent sent over
+        stringStudySetName = intent.getStringExtra(EXTRA_SET_NAME).toString()
         textStudySetName.text = stringStudySetName
 
-        flashcardRecycler = findViewById(R.id.study_set_term_list)
-        flashcardRecycler.layoutManager = LinearLayoutManager(this)
+        flashcardTermList = findViewById(R.id.study_set_term_list)
+        flashcardTermList.layoutManager = LinearLayoutManager(this)
 
         flashcardDataSource = FlashcardDataSource.getDataSource()
 
-        GlobalScope.launch { // we only want flashcards of this study set to populate the recycler view
+        // only want flashcards of this study set to populate the recycler view
+        GlobalScope.launch {
             flashcardDataSource.updateLiveData(stringStudySetName)
         }
 
@@ -67,12 +63,12 @@ class AddStudySetActivity : AppCompatActivity() {
         liveData.observe(this) {
             it?.let {
                 flashcardAdapter = FlashcardAdapter(this, it)
-                flashcardRecycler.adapter = flashcardAdapter
+                flashcardTermList.adapter = flashcardAdapter
             }
         }
 
 
-        buttonAddTerm.setOnClickListener() {
+        buttonAddTerm.setOnClickListener {
             val dialog = Dialog(this)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.setContentView(R.layout.layout_edit_study_set_term)
@@ -82,17 +78,18 @@ class AddStudySetActivity : AppCompatActivity() {
             l.width = WindowManager.LayoutParams.MATCH_PARENT
             l.height = WindowManager.LayoutParams.MATCH_PARENT
 
-            val termEditText = dialog.findViewById(R.id.study_set_term) as EditText
-            val defEditText = dialog.findViewById(R.id.study_set_definition) as EditText
-            val addBtn = dialog.findViewById(R.id.save_term) as Button
-            val deleteBtn = dialog.findViewById(R.id.delete_term) as Button
+            val editTextTerm = dialog.findViewById(R.id.study_set_term) as EditText
+            val editTextDefinition = dialog.findViewById(R.id.study_set_definition) as EditText
+            val buttonSaveTerm = dialog.findViewById(R.id.save_term) as Button
+            val buttonDeleteTerm = dialog.findViewById(R.id.delete_term) as Button
 
-            val cancelTip = dialog.findViewById(R.id.delete_term_caption) as TextView
-            cancelTip.text = getString(R.string.cancel_term)
+            val textCancelTerm = dialog.findViewById(R.id.delete_term_caption) as TextView
+            textCancelTerm.text = getString(R.string.cancel_term)
 
-            addBtn.setOnClickListener() { // add the flashcard
-                val term = termEditText.text.toString()
-                val def = defEditText.text.toString()
+            // add the flashcard
+            buttonSaveTerm.setOnClickListener {
+                val term = editTextTerm.text.toString()
+                val def = editTextDefinition.text.toString()
                 if (term != "" && def != "") {
                     GlobalScope.launch(Dispatchers.IO) {
                         flashcardDataSource.insertFlashcard(term, def, stringStudySetName)
@@ -101,7 +98,8 @@ class AddStudySetActivity : AppCompatActivity() {
                 }
             }
 
-            deleteBtn.setOnClickListener { // close the dialog
+            // close the dialog
+            buttonDeleteTerm.setOnClickListener {
                 dialog.cancel()
             }
 
@@ -109,16 +107,18 @@ class AddStudySetActivity : AppCompatActivity() {
             dialog.window?.attributes = l
         }
 
-        buttonFlashcards.setOnClickListener() {
-            if(liveData.value?.isNotEmpty() == true) { // make sure that we actual have data
+        buttonFlashcards.setOnClickListener {
+            // ensure there is actual data
+            if(liveData.value?.isNotEmpty() == true) {
+                // send the name of the study set to the flashcard activity
                 val intent = Intent(this@AddStudySetActivity, FlashcardActivity::class.java).apply {
                     putExtra(
                         EXTRA_FLASHCARD_SET,
                         stringStudySetName
-                    ) // send the name of the study set to the flashcard activity
+                    )
                 }
                 startActivityForResult(intent, REQUEST_CODE_FLASHCARD)
-            } else{
+            } else {
                 val toast = Toast.makeText(applicationContext, "Please Add a Term First!", Toast.LENGTH_LONG)
                 toast.show()
             }
@@ -136,5 +136,4 @@ class AddStudySetActivity : AppCompatActivity() {
             flashcardDataSource.deleteFlashcard(flashcard)
         }
     }
-
 }

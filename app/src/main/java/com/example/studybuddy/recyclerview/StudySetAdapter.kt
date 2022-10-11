@@ -43,7 +43,7 @@ class StudySetAdapter(val activity: Activity, private val studySets : List<Study
         }
         init {
             studySetNameTxt = itemView.findViewById(R.id.study_set_name)
-            studySetEditButton = itemView.findViewById(R.id.study_set_edit)
+            studySetEditButton = itemView.findViewById(R.id.study_set_view)
             studySetDeleteButton = itemView.findViewById(R.id.study_set_delete)
         }
     }

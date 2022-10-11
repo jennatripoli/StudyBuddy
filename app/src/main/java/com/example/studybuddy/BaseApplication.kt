@@ -23,7 +23,5 @@ class BaseApplication : Application() {
         fun getContext() : Context {
             return INSTANCE!!.applicationContext
         }
-
     }
-
 }

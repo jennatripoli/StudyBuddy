@@ -36,7 +36,6 @@ class PomodoroActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pomodoro)
 
         checkViewModel()
-
         initTimers()
 
         stringCurrentPeriod = findViewById(R.id.current_period)
@@ -64,10 +63,11 @@ class PomodoroActivity : AppCompatActivity() {
             currentBreakTime = totalBreak
             pomodoroViewModel.currentBreakTime = currentBreakTime
 
-            stringCurrentPeriod.setText("Keep on studying!")
-            stringTimeRemaining.setText(millisToTime(totalStudy))
+            stringCurrentPeriod.text = "Keep on studying!"
+            stringTimeRemaining.text = millisToTime(totalStudy)
 
-            initTimers() // timers must re-init
+            // timers must re-init
+            initTimers()
         }
     }
 
@@ -77,7 +77,7 @@ class PomodoroActivity : AppCompatActivity() {
             override fun onTick(millisUntilFinish: Long) {
                 currentStudyTime = millisUntilFinish
                 pomodoroViewModel.currentStudyTime = currentStudyTime
-                stringTimeRemaining.setText(millisToTime(millisUntilFinish))
+                stringTimeRemaining.text = millisToTime(millisUntilFinish)
             }
 
             override fun onFinish() {
@@ -93,7 +93,7 @@ class PomodoroActivity : AppCompatActivity() {
             override fun onTick(millisUntilFinish: Long) {
                 currentBreakTime = millisUntilFinish
                 pomodoroViewModel.currentBreakTime = currentBreakTime
-                stringTimeRemaining.setText(millisToTime(millisUntilFinish))
+                stringTimeRemaining.text = millisToTime(millisUntilFinish)
             }
 
             override fun onFinish() {
@@ -122,7 +122,7 @@ class PomodoroActivity : AppCompatActivity() {
     }
 
     fun startStudying() {
-        stringCurrentPeriod.setText("Keep on studying!")
+        stringCurrentPeriod.text = "Keep on studying!"
 
         timerBreak.cancel()
         breakOn = false
@@ -134,7 +134,7 @@ class PomodoroActivity : AppCompatActivity() {
     }
 
     fun startBreak() {
-        stringCurrentPeriod.setText("Enjoy your break!")
+        stringCurrentPeriod.text = "Enjoy your break!"
 
         timerStudy.cancel()
         studyOn = false

@@ -23,16 +23,14 @@ import retrofit2.create
 import java.util.*
 import kotlin.collections.ArrayList
 
-private const val TAG = "WebserverActivity"
+const val REQUEST_CODE_MICROPHONE = 5
 private const val baseURL = "https://api.dictionaryapi.dev/"
-
-const val REQUEST_CODE_MICROPHONE = 30
 
 class WebserverActivity : AppCompatActivity() {
 
-    private lateinit var editTextSearch : EditText
     private lateinit var buttonSearch : Button
     private lateinit var buttonMicrophone : Button
+    private lateinit var editTextSearch : EditText
     private lateinit var textDefinition : TextView
     private lateinit var progressBar : ProgressBar
 
@@ -53,25 +51,25 @@ class WebserverActivity : AppCompatActivity() {
         setContentView(R.layout.activity_webserver)
 
         editTextSearch = findViewById(R.id.search_text)
-        buttonSearch = findViewById(R.id.search_btn)
-        buttonMicrophone = findViewById(R.id.microphone_btn)
+        buttonSearch = findViewById(R.id.search_vocab)
+        buttonMicrophone = findViewById(R.id.microphone)
         textDefinition = findViewById(R.id.definition_text)
         progressBar = findViewById(R.id.progress_bar)
 
-        progressBar.visibility = View.INVISIBLE // init as invisible
+        // init as invisible
+        progressBar.visibility = View.INVISIBLE
 
-        try { // init the network api
+        // init the network api, exit intent if there was an issue
+        try {
             networkAPI = initNetworkAPI()
-        } catch (e : Exception) { // exit intent if there was an issue
-            Log.d(TAG, "There was an issue connection the dictionary API")
+        } catch (e : Exception) {
             finish()
         }
 
-        if(webserverDefViewModel.currentDef != null) textDefinition.text = webserverDefViewModel.currentDef // check view model
+        // check view model
+        if(webserverDefViewModel.currentDef != null) textDefinition.text = webserverDefViewModel.currentDef
 
-        buttonMicrophone.setOnClickListener() { // microphone button press
-
-            // create intent
+        buttonMicrophone.setOnClickListener {
             val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
 
             // put intent extras for speech recognition
@@ -79,20 +77,17 @@ class WebserverActivity : AppCompatActivity() {
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.ENGLISH)
             intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak Term")
 
-            // start intent activity
             startActivityForResult(intent, REQUEST_CODE_MICROPHONE)
         }
 
-        buttonSearch.setOnClickListener() { // on search
+        buttonSearch.setOnClickListener {
             searchApiForDefinition(networkAPI)
         }
     }
 
-    /**
-     * Initializes the retrofit API and Moshi JSON parsing
-     */
+    // init the retrofit API and Moshi JSON parsing
     private fun initNetworkAPI(): NetworkAPI {
-        // declare moshi for json parsing
+        // declare Moshi for JSON parsing
         val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
         // create retrofit object at the base url
@@ -106,9 +101,7 @@ class WebserverActivity : AppCompatActivity() {
         return retrofit.create()
     }
 
-    /**
-     * Searches the dictionary API at the baseurl for the inputted word
-     */
+    // search the dictionary API at the base url for the inputted word
     private fun searchApiForDefinition(networkAPI : NetworkAPI) {
         // start progress bar
         progressBar.visibility = View.VISIBLE
@@ -119,22 +112,25 @@ class WebserverActivity : AppCompatActivity() {
         // get term to search
         val searchTerm = editTextSearch.text.toString()
 
-        if(searchTerm != "") { // user attempts to enter a term
+        // user attempts to enter a term
+        if(searchTerm != "") {
             GlobalScope.launch(Dispatchers.Main){
                 try {
                     val list: List<JSON> = networkAPI.fetchDefinition(searchTerm)
                     def = list[0].meanings[0].defs[0].def
-                    webserverDefViewModel.currentDef = def // put into view model
-                    textDefinition.text = def // set text field
+                    webserverDefViewModel.currentDef = def
+                    textDefinition.text = def
                     progressBar.visibility = View.INVISIBLE
                 } catch (e : Exception) {
                     progressBar.visibility = View.INVISIBLE
                     textDefinition.text = getString(R.string.unable_to_find)
                 }
             }
-        } else { // user did not enter a term
+
+        // user did not enter a term
+        } else {
             progressBar.visibility = View.INVISIBLE
-            val toast = Toast.makeText(applicationContext, "Please Enter a Term!", Toast.LENGTH_LONG)
+            val toast = Toast.makeText(applicationContext, "Please enter a term.", Toast.LENGTH_LONG)
             toast.show()
             return
         }

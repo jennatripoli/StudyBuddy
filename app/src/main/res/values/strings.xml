@@ -46,5 +46,4 @@
     <string name="webserver_search_tip">vocabulary word</string>
     <string name="search">Search</string>
     <string name="unable_to_find">Unable to find the requested word.</string>
-
 </resources>

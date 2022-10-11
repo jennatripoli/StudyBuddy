@@ -4,7 +4,6 @@ import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -14,8 +13,6 @@ import com.example.studybuddy.viewmodels.FlashcardActivityViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-private const val TAG = "FlashcardActivity"
-
 class FlashcardActivity : AppCompatActivity() {
 
     private lateinit var buttonFlip : Button
@@ -24,6 +21,7 @@ class FlashcardActivity : AppCompatActivity() {
     private lateinit var cardFront : TextView
     private lateinit var cardBack : TextView
     private lateinit var stringStudySetName : String
+
     private lateinit var flashcardList: List<FlashcardEntity>
     private var currentIndex = 0
 
@@ -39,31 +37,36 @@ class FlashcardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flashcard)
 
-        stringStudySetName = intent.getStringExtra(EXTRA_FLASHCARD_SET).toString() // gets the name of the study set to pull from
+        // get the name of the study set to pull from
+        stringStudySetName = intent.getStringExtra(EXTRA_FLASHCARD_SET).toString()
 
-        currentIndex = if(flashcardActivityViewModel.currentIndex == null) 0 // pull from view model to save state on screen rotation
+        // pull from view model to save state on screen rotation
+        currentIndex = if(flashcardActivityViewModel.currentIndex == null) 0
         else flashcardActivityViewModel.currentIndex!!
 
         buttonFlip = findViewById(R.id.card_flip)
         buttonNext = findViewById(R.id.next_term)
         buttonPrevious = findViewById(R.id.previous_term)
-        cardFront = findViewById(R.id.card_front)
-        cardBack = findViewById(R.id.card_back)
+        cardFront = findViewById(R.id.card_term)
+        cardBack = findViewById(R.id.card_definition)
 
-        val scale = applicationContext.resources.displayMetrics.density // init all animation properties
+        // init all animation properties
+        val scale = applicationContext.resources.displayMetrics.density
         cardFront.cameraDistance = 8000 * scale
         cardBack.cameraDistance = 8000 * scale
 
         animationFront = AnimatorInflater.loadAnimator(applicationContext, R.animator.animator_front) as AnimatorSet
         animationBack = AnimatorInflater.loadAnimator(applicationContext, R.animator.animator_back) as AnimatorSet
 
-        GlobalScope.launch { // init the flashcard list and initial flashcard
+        // init the flashcard list and initial flashcard
+        GlobalScope.launch {
             flashcardList = db?.getFlashcardsForStudySet(stringStudySetName)!!
             displayTerm()
             displayDef()
         }
 
-        buttonFlip.setOnClickListener { // flips the flashcard
+        // flip the flashcard to show the other side
+        buttonFlip.setOnClickListener {
             if (showingFront) {
                 flipToBack()
             } else {
@@ -71,13 +74,15 @@ class FlashcardActivity : AppCompatActivity() {
             }
         }
 
-        buttonNext.setOnClickListener() { // go next
+        // move to next term
+        buttonNext.setOnClickListener() {
             currentIndex = (currentIndex + 1) % flashcardList.size
             flashcardActivityViewModel.currentIndex = currentIndex
             handleCardChange()
         }
 
-        buttonPrevious.setOnClickListener() { // go previous
+        // move to previous term
+        buttonPrevious.setOnClickListener() {
             currentIndex = (currentIndex - 1) % flashcardList.size
             if(currentIndex < 0) currentIndex = flashcardList.size - 1
             flashcardActivityViewModel.currentIndex = currentIndex
@@ -118,5 +123,4 @@ class FlashcardActivity : AppCompatActivity() {
     private fun displayDef() {
         cardBack.text = flashcardList[currentIndex].definition
     }
-
 }
