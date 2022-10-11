@@ -76,14 +76,14 @@ class AddStudySetActivity : AppCompatActivity() {
             val l = WindowManager.LayoutParams()
             l.copyFrom(dialog.window?.attributes)
             l.width = WindowManager.LayoutParams.MATCH_PARENT
-            l.height = WindowManager.LayoutParams.MATCH_PARENT
+            l.height = WindowManager.LayoutParams.WRAP_CONTENT
 
-            val editTextTerm = dialog.findViewById(R.id.add_study_set_name) as EditText
-            val editTextDefinition = dialog.findViewById(R.id.study_set_definition) as EditText
+            val editTextTerm = dialog.findViewById(R.id.edit_term) as EditText
+            val editTextDefinition = dialog.findViewById(R.id.edit_definition) as EditText
             val buttonSaveTerm = dialog.findViewById(R.id.save_term) as Button
             val buttonDeleteTerm = dialog.findViewById(R.id.cancel_term) as Button
 
-            val textCancelTerm = dialog.findViewById(R.id.delete_term_caption) as TextView
+            val textCancelTerm = dialog.findViewById(R.id.cancel_term_caption) as TextView
             textCancelTerm.text = getString(R.string.cancel_caption)
 
             // add the flashcard

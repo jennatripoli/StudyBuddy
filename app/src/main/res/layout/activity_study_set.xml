@@ -10,13 +10,17 @@
         android:id = "@+id/study_set_name"
         android:hint="@string/study_set_name"
 
-        android:textSize="25sp"
+        android:textSize="60sp"
+        android:fontFamily="@font/bubbles"
         android:textStyle="bold"
         android:textAlignment="center"
+        android:textAllCaps="true"
 
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

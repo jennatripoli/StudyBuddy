@@ -63,7 +63,7 @@ class PomodoroActivity : AppCompatActivity() {
             currentBreakTime = totalBreak
             pomodoroViewModel.currentBreakTime = currentBreakTime
 
-            stringCurrentPeriod.text = "Keep on studying!"
+            stringCurrentPeriod.text = "KEEP ON STUDYING!"
             stringTimeRemaining.text = millisToTime(totalStudy)
 
             // timers must re-init
@@ -122,7 +122,7 @@ class PomodoroActivity : AppCompatActivity() {
     }
 
     fun startStudying() {
-        stringCurrentPeriod.text = "Keep on studying!"
+        stringCurrentPeriod.text = "KEEP ON STUDYING!"
 
         timerBreak.cancel()
         breakOn = false
@@ -134,7 +134,7 @@ class PomodoroActivity : AppCompatActivity() {
     }
 
     fun startBreak() {
-        stringCurrentPeriod.text = "Enjoy your break!"
+        stringCurrentPeriod.text = "ENJOY YOUR BREAK!"
 
         timerStudy.cancel()
         studyOn = false

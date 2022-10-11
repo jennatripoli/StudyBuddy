@@ -1,11 +1,9 @@
 package com.example.studybuddy
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.InputType
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
@@ -75,7 +73,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createNewStudySet() {
-
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.layout_add_study_set)
@@ -83,14 +80,13 @@ class MainActivity : AppCompatActivity() {
         val l = WindowManager.LayoutParams()
         l.copyFrom(dialog.window?.attributes)
         l.width = WindowManager.LayoutParams.MATCH_PARENT
-        l.height = WindowManager.LayoutParams.MATCH_PARENT
+        l.height = WindowManager.LayoutParams.WRAP_CONTENT
 
-        val editTextStudySetName = dialog.findViewById(R.id.add_study_set_name) as EditText
+        val editTextStudySetName = dialog.findViewById(R.id.edit_term) as EditText
         val buttonSaveStudySet = dialog.findViewById(R.id.save_study_set) as Button
         val buttonCancelStudySet = dialog.findViewById(R.id.cancel_study_set) as Button
 
         buttonSaveStudySet.setOnClickListener() {
-
             val newStudySetName = editTextStudySetName.text.toString()
 
             if(newStudySetName != "") {
@@ -98,7 +94,6 @@ class MainActivity : AppCompatActivity() {
                     setDataSource.insertStudySet(newStudySetName)
                     dialog.cancel()
                 }
-
             } else {
                 val toast = Toast.makeText(applicationContext, "Please enter a name.", Toast.LENGTH_LONG)
                 toast.show()
@@ -122,5 +117,3 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-
-

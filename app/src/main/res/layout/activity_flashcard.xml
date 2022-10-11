@@ -7,6 +7,37 @@
     tools:context=".FlashcardActivity">
 
     <TextView
+        android:id = "@+id/flashcard_study_set_name"
+        android:text="@string/study_set_name"
+
+        android:textSize="60sp"
+        android:fontFamily="@font/bubbles"
+        android:textStyle="bold"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id = "@+id/flashcard_study_set"
+        android:text="@string/flashcards"
+
+        android:textSize="60sp"
+        android:fontFamily="@font/bubbles"
+        android:textStyle="bold"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/flashcard_study_set_name" />
+
+    <TextView
         android:id="@+id/card_definition"
         android:background="@color/grey_light"
         android:text="@string/card_back"
@@ -18,7 +49,7 @@
 
         android:layout_width="300dp"
         android:layout_height="200dp"
-        android:layout_marginTop="-100dp"
+        android:layout_marginTop="-50dp"
         android:padding="10dp"
 
         app:layout_constraintLeft_toLeftOf="parent"
@@ -38,7 +69,7 @@
 
         android:layout_width="300dp"
         android:layout_height="200dp"
-        android:layout_marginTop="-100dp"
+        android:layout_marginTop="-50dp"
         android:padding="10dp"
 
         app:layout_constraintLeft_toLeftOf="parent"
