@@ -25,11 +25,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
+        android:layout_marginTop="8dp"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/study_set_view"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/study_set_view" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id = "@+id/study_set_view"
@@ -44,9 +44,11 @@
         android:layout_height="40dp"
         android:padding="0dp"
         android:layout_marginEnd="50dp"
+        android:layout_marginTop="10dp"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/study_set_name" />
 
     <Button
         android:id = "@+id/study_set_delete"
@@ -61,8 +63,10 @@
         android:layout_height="40dp"
         android:padding="0dp"
         android:layout_marginEnd="1dp"
+        android:layout_marginTop="10dp"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/study_set_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

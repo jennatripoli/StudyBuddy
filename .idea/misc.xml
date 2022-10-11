@@ -12,11 +12,14 @@
         <entry key="..\:/Users/samka/StudioProjects/StudyBuddy/app/src/main/res/font-v26/bubbles.xml" value="0.15648148148148147" />
         <entry key="..\:/Users/samka/StudioProjects/StudyBuddy/app/src/main/res/font/bubbles.xml" value="0.27239583333333334" />
         <entry key="..\:/Users/samka/StudioProjects/StudyBuddy/app/src/main/res/font/bubbles_font.xml" value="0.15648148148148147" />
+        <entry key="..\:/Users/samka/StudioProjects/StudyBuddy/app/src/main/res/layout/activity_flashcard.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/samka/StudioProjects/StudyBuddy/app/src/main/res/layout/activity_main.xml" value="0.25317028985507245" />
         <entry key="..\:/Users/samka/StudioProjects/StudyBuddy/app/src/main/res/layout/activity_pomodoro.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/samka/StudioProjects/StudyBuddy/app/src/main/res/layout/activity_webserver.xml" value="0.25" />
+        <entry key="..\:/Users/samka/StudioProjects/StudyBuddy/app/src/main/res/layout/item_study_set.xml" value="0.335" />
         <entry key="..\:/Users/samka/StudioProjects/StudyBuddy/app/src/main/res/layout/item_study_set_term.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/samka/StudioProjects/StudyBuddy/app/src/main/res/layout/layout_add_study_set.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/samka/StudioProjects/StudyBuddy/app/src/main/res/layout/layout_edit_study_set_term.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/samka/StudioProjects/StudyBuddy/app/src/main/res/layout/layout_add_study_set.xml" value="0.25" />
+        <entry key="..\:/Users/samka/StudioProjects/StudyBuddy/app/src/main/res/layout/layout_edit_study_set_term.xml" value="0.25" />
         <entry key="..\:/Users/samka/StudioProjects/StudyBuddy/app/src/main/res/layout/layout_progressbar.xml" value="0.21458333333333332" />
         <entry key="app/src/main/res/drawable/circle_button.xml" value="0.1655" />
         <entry key="app/src/main/res/layout/activity_add_study_set.xml" value="0.14686279296875002" />

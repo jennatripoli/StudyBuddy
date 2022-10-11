@@ -39,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@id/add_study_set_title" />
 
     <Button
-        android:id = "@+id/save_term"
+        android:id = "@+id/save_study_set"
         android:background="@drawable/circle_button"
         android:text = "@string/save"
 
@@ -67,12 +67,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
 
-        app:layout_constraintEnd_toEndOf="@id/save_term"
-        app:layout_constraintStart_toStartOf="@id/save_term"
-        app:layout_constraintTop_toBottomOf="@id/save_term" />
+        app:layout_constraintEnd_toEndOf="@id/save_study_set"
+        app:layout_constraintStart_toStartOf="@id/save_study_set"
+        app:layout_constraintTop_toBottomOf="@id/save_study_set" />
 
     <Button
-        android:id = "@+id/cancel_term"
+        android:id = "@+id/cancel_study_set"
         android:background="@drawable/circle_button"
         android:text = "@string/delete"
 
@@ -100,8 +100,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
 
-        app:layout_constraintEnd_toEndOf="@id/cancel_term"
-        app:layout_constraintStart_toStartOf="@id/cancel_term"
-        app:layout_constraintTop_toBottomOf="@id/cancel_term" />
+        app:layout_constraintEnd_toEndOf="@id/cancel_study_set"
+        app:layout_constraintStart_toStartOf="@id/cancel_study_set"
+        app:layout_constraintTop_toBottomOf="@id/cancel_study_set" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

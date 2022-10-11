@@ -1,12 +1,16 @@
 package com.example.studybuddy
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studybuddy.recyclerview.StudySetAdapter
@@ -71,33 +75,42 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createNewStudySet() {
-        // create alert dialog
-        val builder : AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Enter Study Set Name")
 
-        // create text input
-        val newSetNameInput = EditText(this)
-        newSetNameInput.inputType = InputType.TYPE_CLASS_TEXT
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.layout_add_study_set)
 
-        // apply text input to builder
-        builder.setView(newSetNameInput)
+        val l = WindowManager.LayoutParams()
+        l.copyFrom(dialog.window?.attributes)
+        l.width = WindowManager.LayoutParams.MATCH_PARENT
+        l.height = WindowManager.LayoutParams.MATCH_PARENT
 
-        // create buttons for interaction
-        builder.setPositiveButton("Create") { _, _ ->
+        val editTextStudySetName = dialog.findViewById(R.id.add_study_set_name) as EditText
+        val buttonSaveStudySet = dialog.findViewById(R.id.save_study_set) as Button
+        val buttonCancelStudySet = dialog.findViewById(R.id.cancel_study_set) as Button
 
-            val newSetName = newSetNameInput.text.toString()
+        buttonSaveStudySet.setOnClickListener() {
 
-            // add to recycler view and database
-            if(newSetName != "") {
+            val newStudySetName = editTextStudySetName.text.toString()
+
+            if(newStudySetName != "") {
                 GlobalScope.launch(Dispatchers.IO) {
-                    setDataSource.insertStudySet(newSetName)
+                    setDataSource.insertStudySet(newStudySetName)
+                    dialog.cancel()
                 }
+
+            } else {
+                val toast = Toast.makeText(applicationContext, "Please enter a name.", Toast.LENGTH_LONG)
+                toast.show()
             }
         }
-        builder.setNegativeButton("Cancel") { dialog, _ ->
+
+        buttonCancelStudySet.setOnClickListener() {
             dialog.cancel()
         }
-        builder.show()
+
+        dialog.show()
+        dialog.window?.attributes = l
     }
 
     // remove from recycler view and database
