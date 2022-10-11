@@ -8,11 +8,9 @@
 
     <TextView
         android:id = "@+id/study_set_name"
-        android:text="@string/study_set_name"
+        android:hint="@string/study_set_name"
 
-        android:textSize="60sp"
-        android:fontFamily="@font/bubbles"
-        android:textAllCaps="true"
+        android:textSize="25sp"
         android:textStyle="bold"
         android:textAlignment="center"
 
