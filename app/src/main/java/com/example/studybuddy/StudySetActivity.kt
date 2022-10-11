@@ -67,7 +67,6 @@ class AddStudySetActivity : AppCompatActivity() {
             }
         }
 
-
         buttonAddTerm.setOnClickListener {
             val dialog = Dialog(this)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
