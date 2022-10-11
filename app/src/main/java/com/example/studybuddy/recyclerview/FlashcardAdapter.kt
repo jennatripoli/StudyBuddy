@@ -37,10 +37,10 @@ class FlashcardAdapter (val activity: Activity, private val flashcards : List<Fl
                 l.width = WindowManager.LayoutParams.MATCH_PARENT
                 l.height = WindowManager.LayoutParams.MATCH_PARENT
 
-                val termEditText = dialog.findViewById(R.id.study_set_term) as EditText
+                val termEditText = dialog.findViewById(R.id.add_study_set_name) as EditText
                 val defEditText = dialog.findViewById(R.id.study_set_definition) as EditText
                 val addBtn = dialog.findViewById(R.id.save_term) as Button
-                val deleteBtn = dialog.findViewById(R.id.delete_term) as Button
+                val deleteBtn = dialog.findViewById(R.id.cancel_term) as Button
 
                 termEditText.setText(flashcard.term) // sets the edit texts for edit to the prev values
                 defEditText.setText(flashcard.definition)
@@ -73,7 +73,7 @@ class FlashcardAdapter (val activity: Activity, private val flashcards : List<Fl
             }
         }
         init {
-            studySetTermTxt = itemView.findViewById(R.id.study_set_term)
+            studySetTermTxt = itemView.findViewById(R.id.add_study_set_name)
             studySetDefTxt = itemView.findViewById(R.id.study_set_definition)
             editBtn = itemView.findViewById(R.id.term_edit)
         }

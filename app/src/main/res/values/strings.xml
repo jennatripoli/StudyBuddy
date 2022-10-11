@@ -1,9 +1,13 @@
 <resources>
-    <string name="app_name">Study Buddy</string>
-    <string name="add_study_set">add a new study set</string>
+    <string name="app_name">STUDY BUDDY</string>
+    <string name="add_study_set">add a study set</string>
     <string name="play_flashcard">study flashcards</string>
     <string name="study_plan">study plan</string>
-    <string name="webserver_caption">dictionary</string>
+    <string name="webserver">dictionary</string>
+
+    <string name="add_study_set_title">ADD STUDY SET</string>
+    <string name="add_study_set_name">name</string>
+    <string name="add_study_set_save">save study set</string>
 
     <string name="add">+</string>
     <string name="play">▶</string>
@@ -19,31 +23,31 @@
     <string name="save">💾️</string>
     <string name="microphone">🎙</string>
 
-    <string name="study_set_name">Study Set Name</string>
-    <string name="study_set_term">Term</string>
-    <string name="study_set_definition">Definition</string>
-    <string name="add_term">add a new term</string>
+    <string name="study_set_name">STUDY SET NAME</string>
+    <string name="study_set_term">term</string>
+    <string name="study_set_definition">definition</string>
+    <string name="add_term">add a term</string>
 
-    <string name="pomodoro">The Pomodoro Technique</string>
-    <string name="pomodoro_description">The Pomodoro Technique involves studying for 25 minutes, then taking a 5 minute break, and continuing this pattern until you finish learning.</string>
-    <string name="current_period">Keep on studying!</string>
-    <string name="time_remaining">Current time remaining:</string>
+    <string name="pomodoro">POMODORO TECHNIQUE</string>
+    <string name="pomodoro_description">This involves studying for 25 minutes, then taking a 5 minute break, and continuing this pattern until you finish learning.</string>
+    <string name="current_period">KEEP ON STUDYING!</string>
+    <string name="time_remaining">current time remaining:</string>
     <string name="time">25:00</string>
-    <string name="start_timer">Start</string>
-    <string name="cancel_timer">Cancel</string>
+    <string name="start_timer">START</string>
+    <string name="cancel_timer">CANCEL</string>
 
-    <string name="edit_term">Edit Term</string>
+    <string name="edit_term">EDIT TERM</string>
     <string name="delete_term">delete term</string>
     <string name="save_term">save term</string>
-    <string name="cancel_term">cancel</string>
+    <string name="cancel">cancel</string>
 
-    <string name="card_flip">Flip</string>
-    <string name="card_front">Card Front</string>
-    <string name="card_back">Card Back</string>
+    <string name="card_flip">FLIP</string>
+    <string name="card_front">card front</string>
+    <string name="card_back">card back</string>
 
-    <string name="webserver_title">Dictionary Search</string>
-    <string name="webserver_description">Need help defining a vocabulary word? Type the word below and a dictionary web API will search for its definition!</string>
+    <string name="webserver_title">DICTIONARY SEARCH</string>
+    <string name="webserver_description">Need help defining a vocabulary word? Type it below and a dictionary web API will search for its definition!</string>
     <string name="webserver_search_tip">vocabulary word</string>
-    <string name="search">Search</string>
+    <string name="search">SEARCH</string>
     <string name="unable_to_find">Unable to find the requested word.</string>
 </resources>

@@ -92,7 +92,7 @@
 
     <TextView
         android:id = "@+id/definition_text"
-        tools:text="Tools Text: Definition Goes Here"
+        tools:text="definition"
 
         android:textSize="18sp"
         android:gravity="center"

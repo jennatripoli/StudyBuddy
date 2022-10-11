@@ -121,7 +121,7 @@
 
     <TextView
         android:id = "@+id/log_in_caption"
-        android:text="@string/webserver_caption"
+        android:text="@string/webserver"
 
         android:textSize="14sp"
 

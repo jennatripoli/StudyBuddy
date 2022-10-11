@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/study_set_term"
+        android:id="@+id/add_study_set_name"
         android:text="@string/study_set_term"
 
         android:textSize="18sp"
@@ -44,7 +44,7 @@
         android:layout_marginTop="10dp"
 
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/study_set_term"
+        app:layout_constraintTop_toBottomOf="@id/add_study_set_name"
         app:layout_constraintRight_toLeftOf="@id/term_edit" />
 
     <Button
@@ -62,7 +62,7 @@
         android:layout_marginEnd="1dp"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/study_set_term"
+        app:layout_constraintTop_toTopOf="@id/add_study_set_name"
         app:layout_constraintBottom_toBottomOf="@id/study_set_definition" />
 
     <Space
