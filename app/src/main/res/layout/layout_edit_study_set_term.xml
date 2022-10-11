@@ -78,7 +78,7 @@
 
     <TextView
         android:id = "@+id/save_study_set_caption"
-        android:text="@string/save_term"
+        android:text="@string/save_caption"
 
         android:textSize="14sp"
 
@@ -111,7 +111,7 @@
 
     <TextView
         android:id = "@+id/delete_term_caption"
-        android:text="@string/delete_term"
+        android:text="@string/delete_caption"
 
         android:textSize="14sp"
 

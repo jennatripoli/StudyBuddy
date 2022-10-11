@@ -7,7 +7,6 @@
 
     <string name="add_study_set_title">ADD STUDY SET</string>
     <string name="add_study_set_name">name</string>
-    <string name="add_study_set_save">save study set</string>
 
     <string name="add">+</string>
     <string name="play">▶</string>
@@ -38,8 +37,10 @@
 
     <string name="edit_term">EDIT TERM</string>
     <string name="delete_term">delete term</string>
-    <string name="save_term">save term</string>
-    <string name="cancel">cancel</string>
+
+    <string name="save_caption">save</string>
+    <string name="cancel_caption">cancel</string>
+    <string name="delete_caption">delete</string>
 
     <string name="card_flip">FLIP</string>
     <string name="card_front">card front</string>

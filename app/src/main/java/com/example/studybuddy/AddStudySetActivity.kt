@@ -84,7 +84,7 @@ class AddStudySetActivity : AppCompatActivity() {
             val buttonDeleteTerm = dialog.findViewById(R.id.cancel_term) as Button
 
             val textCancelTerm = dialog.findViewById(R.id.delete_term_caption) as TextView
-            textCancelTerm.text = getString(R.string.cancel)
+            textCancelTerm.text = getString(R.string.cancel_caption)
 
             // add the flashcard
             buttonSaveTerm.setOnClickListener {
