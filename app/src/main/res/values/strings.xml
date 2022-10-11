@@ -28,8 +28,8 @@
     <string name="study_set_definition">definition</string>
     <string name="add_term">add a term</string>
 
-    <string name="pomodoro">POMODORO TECHNIQUE</string>
-    <string name="pomodoro_description">This involves studying for 25 minutes, then taking a 5 minute break, and continuing this pattern until you finish learning.</string>
+    <string name="pomodoro">STUDY PLAN</string>
+    <string name="pomodoro_description">The Pomodoro Technique involves studying for 25 minutes, then taking a 5 minute break, and continuing this pattern until you finish learning.</string>
     <string name="current_period">KEEP ON STUDYING!</string>
     <string name="time_remaining">current time remaining:</string>
     <string name="time">25:00</string>

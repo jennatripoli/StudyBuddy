@@ -8,7 +8,8 @@
         android:id = "@+id/add_study_set_title"
         android:text="@string/edit_term"
 
-        android:textSize="25sp"
+        android:textSize="60sp"
+        android:fontFamily="@font/bubbles"
         android:textStyle="bold"
 
         android:layout_width="wrap_content"
