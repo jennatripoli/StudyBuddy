@@ -21,6 +21,7 @@ class FlashcardActivity : AppCompatActivity() {
     private lateinit var cardFront : TextView
     private lateinit var cardBack : TextView
     private lateinit var stringStudySetName : String
+    private lateinit var textStudySetName : TextView
 
     private lateinit var flashcardList: List<FlashcardEntity>
     private var currentIndex = 0
@@ -49,6 +50,8 @@ class FlashcardActivity : AppCompatActivity() {
         buttonPrevious = findViewById(R.id.previous_term)
         cardFront = findViewById(R.id.card_term)
         cardBack = findViewById(R.id.card_definition)
+        textStudySetName = findViewById(R.id.flashcard_study_set_name)
+        textStudySetName.text = stringStudySetName
 
         // init all animation properties
         val scale = applicationContext.resources.displayMetrics.density
