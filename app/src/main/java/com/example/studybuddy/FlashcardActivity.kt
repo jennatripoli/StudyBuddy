@@ -51,7 +51,7 @@ class FlashcardActivity : AppCompatActivity() {
         cardFront = findViewById(R.id.card_term)
         cardBack = findViewById(R.id.card_definition)
         textStudySetName = findViewById(R.id.flashcard_study_set_name)
-        textStudySetName.text = stringStudySetName
+        textStudySetName.text = stringStudySetName + " FLASHCARDS"
 
         // init all animation properties
         val scale = applicationContext.resources.displayMetrics.density
