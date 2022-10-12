@@ -35,7 +35,7 @@ class FlashcardAdapter (val activity: Activity, private val flashcards : List<Fl
                 val l = WindowManager.LayoutParams()
                 l.copyFrom(dialog.window?.attributes)
                 l.width = WindowManager.LayoutParams.MATCH_PARENT
-                l.height = WindowManager.LayoutParams.MATCH_PARENT
+                l.height = WindowManager.LayoutParams.WRAP_CONTENT
 
                 val termEditText = dialog.findViewById(R.id.edit_term) as EditText
                 val defEditText = dialog.findViewById(R.id.edit_definition) as EditText
