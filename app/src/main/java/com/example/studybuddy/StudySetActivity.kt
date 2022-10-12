@@ -81,8 +81,10 @@ class AddStudySetActivity : AppCompatActivity() {
             val editTextDefinition = dialog.findViewById(R.id.edit_definition) as EditText
             val buttonSaveTerm = dialog.findViewById(R.id.save_term) as Button
             val buttonDeleteTerm = dialog.findViewById(R.id.cancel_term) as Button
-
+            val textAddTerm = dialog.findViewById(R.id.edit_study_set_term) as TextView
             val textCancelTerm = dialog.findViewById(R.id.cancel_term_caption) as TextView
+
+            textAddTerm.text = getString(R.string.add_term).uppercase()
             textCancelTerm.text = getString(R.string.cancel_caption)
 
             // add the flashcard
