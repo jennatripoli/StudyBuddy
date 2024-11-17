@@ -1,3 +1,5 @@
 # Study Buddy
 
-Study Buddy is an Android application that is used to help students prepare and study for exams. Users are able to create custom study sets that include terms and definitions to study. These sets can be studied through the use of digital flashcards. The application also has a built-in study plan timer feature using the Pomodoro Technique, along with a dictionary API search functionality that can take both written and spoken input.
+Study Buddy is an Android application developed using Kotlin, XML, and SQLite to help students efficiently prepare for exams. The app enables users to create custom study sets with terms and definitions, which can be reviewed through interactive digital flashcards. It features a built-in study timer based on the Pomodoro Technique, helping students manage their study sessions effectively. Additionally, Study Buddy integrates a dictionary API search functionality that supports both written and spoken input, providing instant access to word definitions. With its comprehensive toolkit for personalized learning and time management, Study Buddy makes exam preparation more engaging and productive.
+
+Fall 2022 - CS 4518 (Mobile and Ubiquitous Computing) at Worcester Polytechnic Insititute
